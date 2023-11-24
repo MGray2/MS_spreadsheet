@@ -1,0 +1,30 @@
+html {
+    width: 960px;
+}
+
+.spreadSheetLink {
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+.spreadSheetHolder {
+    display: grid;
+    grid-template-columns: repeat(26, 40px);
+    width: 2700px;
+}
+
+.dataSquare {
+    width: 100px;
+    height: 35px;
+    border-style: solid;
+    border-width: 1px;
+    text-align: center;
+    
+}
+
+.initialRow {
+    grid-row-start: 1;
+    grid-row-end: 27;
+}
