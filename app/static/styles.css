@@ -1,30 +1,95 @@
 html {
-    width: 960px;
+  width: 960px;
 }
 
 .spreadSheetLink {
-    padding-left: 10%;
-    padding-right: 10%;
-    padding-top: 5%;
-    padding-bottom: 5%;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+.buttonHolder {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  width: fit-content;
+  height: auto;
+  margin-right: 5%;
 }
 
 .spreadSheetHolder {
-    display: grid;
-    grid-template-columns: repeat(26, 40px);
-    width: 2700px;
+  display: grid;
+  grid-template-columns: repeat(27, 100px);
+  align-content: space-evenly;
+  width: 2700px;
+  height: fit-content;
+  position: absolute;
+  left: 0%;
+  top: 10%;
 }
 
 .dataSquare {
-    width: 100px;
-    height: 35px;
-    border-style: solid;
-    border-width: 1px;
-    text-align: center;
-    
+  width: 100px;
+  height: 35px;
+  border-style: solid;
+  border-width: 1px;
+  text-align: center;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 .initialRow {
-    grid-row-start: 1;
-    grid-row-end: 27;
+  grid-column-start: 1;
+  grid-column-end: 27;
+  display: flex;
+  width: fit-content;
+  height: 35px;
+}
+
+.text {
+  height: 32px;
+  width: 90px;
+  border: none;
+  resize: none;
+  background: transparent;
+  font-family: "Times New Roman";
+}
+
+.text:focus {
+  outline: none;
+}
+
+.toolBar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 10%;
+  background-image: linear-gradient(to bottom right, red, darkred);
+  color: white;
+  font-family: "Franklin Gothic Medium";
+  position: fixed;
+  left: 0%;
+  top: 0%;
+  z-index: 10;
+}
+
+.tool {
+  width: 70%;
+  height: 55%;
+  padding: 2%;
+  font-size: 12pt;
+  margin-right: 10%;
+}
+
+.tool:hover {
+  cursor: pointer;
+}
+
+.brand {
+  padding-left: 4%;
+  padding-right: 4%;
 }
