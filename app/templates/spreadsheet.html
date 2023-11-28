@@ -1,38 +1,41 @@
 {% extends "base.html" %} {% block title %} 1 {% endblock %}{% block content%}
+
 <div class="toolBar">
   <div class="brand">MicahSoft Spreadsheet</div>
   <div class="buttonHolder">
-    <button id="saveButton" class="tool">Save</button>
-    <button id="loadButton" class="tool">Load</button>
+    <button id="refresh" class="tool" title="Clear">↻</button>
+    <button id="saveButton" class="tool" title="Save">⭱</button>
+    <button id="loadButton" class="tool" title="Load">⭳</button>
   </div>
 </div>
 <div class="spreadSheetHolder">
   <div class="dataSquare"></div>
-  <div class="dataSquare">A</div>
-  <div class="dataSquare">B</div>
-  <div class="dataSquare">C</div>
-  <div class="dataSquare">D</div>
-  <div class="dataSquare">E</div>
-  <div class="dataSquare">F</div>
-  <div class="dataSquare">G</div>
-  <div class="dataSquare">H</div>
-  <div class="dataSquare">I</div>
-  <div class="dataSquare">J</div>
-  <div class="dataSquare">K</div>
-  <div class="dataSquare">L</div>
-  <div class="dataSquare">M</div>
-  <div class="dataSquare">N</div>
-  <div class="dataSquare">O</div>
-  <div class="dataSquare">P</div>
-  <div class="dataSquare">Q</div>
-  <div class="dataSquare">R</div>
-  <div class="dataSquare">S</div>
-  <div class="dataSquare">T</div>
-  <div class="dataSquare">U</div>
-  <div class="dataSquare">V</div>
-  <div class="dataSquare">W</div>
-  <div class="dataSquare">X</div>
-  <div class="dataSquare">Y</div>
-  <div class="dataSquare">Z</div>
+  <div class="indexSquare">A</div>
+  <div class="indexSquare">B</div>
+  <div class="indexSquare">C</div>
+  <div class="indexSquare">D</div>
+  <div class="indexSquare">E</div>
+  <div class="indexSquare">F</div>
+  <div class="indexSquare">G</div>
+  <div class="indexSquare">H</div>
+  <div class="indexSquare">I</div>
+  <div class="indexSquare">J</div>
+  <div class="indexSquare">K</div>
+  <div class="indexSquare">L</div>
+  <div class="indexSquare">M</div>
+  <div class="indexSquare">N</div>
+  <div class="indexSquare">O</div>
+  <div class="indexSquare">P</div>
+  <div class="indexSquare">Q</div>
+  <div class="indexSquare">R</div>
+  <div class="indexSquare">S</div>
+  <div class="indexSquare">T</div>
+  <div class="indexSquare">U</div>
+  <div class="indexSquare">V</div>
+  <div class="indexSquare">W</div>
+  <div class="indexSquare">X</div>
+  <div class="indexSquare">Y</div>
+  <div class="indexSquare">Z</div>
 </div>
+
 {% endblock content %}

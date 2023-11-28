@@ -2,11 +2,36 @@ html {
   width: 960px;
 }
 
-.spreadSheetLink {
-  padding-left: 10%;
-  padding-right: 10%;
-  padding-top: 5%;
-  padding-bottom: 5%;
+.bigTitle {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-image: linear-gradient(to bottom right, red, darkred);
+  color: white;
+  font-size: 16pt;
+  text-align: center;
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+}
+
+.projectHolder {
+  display: grid;
+  grid-template-columns: repeat(2, 100px);
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  top: 0%;
+  left: 50%;
+}
+
+.project {
+  width: 100px;
+  height: 100px;
+  border-radius: 5px;
+  margin: 5%;
 }
 
 .buttonHolder {
@@ -14,9 +39,9 @@ html {
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
-  width: fit-content;
+  width: 20%;
   height: auto;
-  margin-right: 5%;
+  margin-right: 2%;
 }
 
 .spreadSheetHolder {
@@ -31,6 +56,30 @@ html {
 }
 
 .dataSquare {
+  width: 100px;
+  height: 35px;
+  border-style: solid;
+  border-width: 1px;
+  text-align: center;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.indexSquare {
+  width: 100px;
+  height: 35px;
+  border-style: solid;
+  border-width: 1px;
+  text-align: center;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.indexSquare:hover {
+  cursor: pointer;
+}
+
+.funcSquare {
   width: 100px;
   height: 35px;
   border-style: solid;
@@ -61,6 +110,18 @@ html {
   outline: none;
 }
 
+.func {
+  height: 32px;
+  width: 90px;
+  border: none;
+  resize: none;
+  background: transparent;
+  font-family: "Times New Roman";
+}
+
+.func:focus {
+  outline: none;
+}
 .toolBar {
   display: flex;
   flex-direction: row;
@@ -79,10 +140,11 @@ html {
 
 .tool {
   width: 70%;
-  height: 55%;
-  padding: 2%;
-  font-size: 12pt;
-  margin-right: 10%;
+  height: 70%;
+  box-shadow: 2px 2px 2px black;
+  font-size: 16pt;
+  margin-right: 20%;
+  text-align: center;
 }
 
 .tool:hover {
