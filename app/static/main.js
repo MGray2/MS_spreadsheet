@@ -37,7 +37,7 @@ function createRow(number) {
   const functionButton = document.createElement("button");
   functionText.className = "func";
   functionButton.className = "funcButton";
-  functionButton.textContent = "Add";
+  functionButton.textContent = " ƒ ";
   func.append(functionText);
   func.append(functionButton);
   newRow.append(func);

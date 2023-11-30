@@ -11,9 +11,8 @@ const loadButton = document.querySelector("#loadButton");
 const refreshButton = document.querySelector("#refresh");
 
 // visually see everything
-console.log(iSquares);
-console.log(dSquares);
-console.log(fSquares);
+console.log(data);
+console.log(funcData);
 console.log(funcButton);
 
 function colorChange(target) {
@@ -102,7 +101,7 @@ allColumns();
 allRows();
 
 // refresh button
-refreshButton.addEventListener("click", () => {
+refreshButton.addEventListener("dblclick", () => {
   for (let i = 0; i < 47; i++) {
     iSquares[i].style.backgroundColor = "";
   }
@@ -146,13 +145,21 @@ numberStyle();
 
 function buttonCycle() {
   for (let i = 0; i < 26; i++) {
-    funcButton[i].addEventListener("click", () => {
+    funcButton[i].addEventListener("contextmenu", () => {
       switch (funcButton[i].textContent) {
+        case " ƒ ":
+          funcButton[i].textContent = "Add";
+          funcButton[i].title = "Addition";
+          break;
         case "Add":
           funcButton[i].textContent = "Sub";
           funcButton[i].title = "Subtraction";
           break;
         case "Sub":
+          funcButton[i].textContent = "Mul";
+          funcButton[i].title = "Multiply";
+          break;
+        case "Mul":
           funcButton[i].textContent = "Avg";
           funcButton[i].title = "Average";
           break;
@@ -165,8 +172,8 @@ function buttonCycle() {
           funcButton[i].title = "Alphabetical Descending";
           break;
         default:
-          funcButton[i].textContent = "Add";
-          funcButton[i].title = "Addition";
+          funcButton[i].textContent = " ƒ ";
+          funcButton[i].title = "None Selected";
           break;
       }
     });
@@ -176,18 +183,85 @@ function buttonCycle() {
 // buttons can now cycle between modes
 buttonCycle();
 
-function Summation(index, start, end) {
-  index.addEventListener("change", () => {
-    // code goes here
+// start = 0, end = 20
+function math(index, start, end) {
+  funcButton[index].addEventListener("click", () => {
+    if (funcButton[index].textContent === "Add") {
+      let result = 0;
+      for (let i = start; i < end; i++) {
+        if (!isNaN(Number(data[i].value))) {
+          result += Number(data[i].value);
+        }
+      }
+      funcData[index].value = result;
+    } else if (funcButton[index].textContent === "Sub") {
+      let result = 0;
+      for (let i = start; i < end; i++) {
+        if (!isNaN(Number(data[i].value))) {
+          result -= Number(data[i].value);
+        }
+      }
+      funcData[index].value = result;
+    } else if (funcButton[index].textContent === "Mul") {
+      let result = 1;
+      for (let i = start; i < end; i++) {
+        if (!isNaN(Number(data[i].value)) && Number(data[i].value !== "")) {
+          result *= Number(data[i].value);
+        }
+      }
+      funcData[index].value = result;
+    } else if (funcButton[index].textContent === "Avg") {
+      let result = 0;
+      let length = 0;
+      for (let i = start; i < end; i++) {
+        if (!isNaN(Number(data[i].value)) && Number(data[i].value !== "")) {
+          result += Number(data[i].value);
+          length++;
+        }
+      }
+      result /= length;
+      funcData[index].value = result;
+    } else if (funcButton[index].textContent === "A ▼") {
+      for (let i = start; i < end; i++) {
+        console.log(data[i].value);
+      }
+    }
   });
 }
 
-funcButton[0].addEventListener("click", () => {
-  let result = 0;
-  for (let i = 0; i < 21; i++) {
-    if (!isNaN(dSquares[i])) {
-      result += dSquares[i];
+function mathAll() {
+  let start = 0;
+  let end = 20;
+  for (let i = 0; i < 26; i++) {
+    math(i, start, end);
+    start += 20;
+    end += 20;
+  }
+}
+
+// functional squares are able to do math related operations
+mathAll();
+
+saveButton.addEventListener("dblclick", () => {
+  const information = [];
+  for (let i = 0; i < 520; i++) {
+    if (data[i].value === "") {
+      information.push("");
+    } else {
+      information.push(data[i].value);
     }
   }
-  funcData[0].value = result;
+  localStorage.setItem("save1", information);
+});
+
+loadButton.addEventListener("dblclick", () => {
+  const savedData = localStorage.getItem("save1");
+  console.log(savedData);
+  for (let i = 0; i < 520; i++) {
+    if (!Boolean(savedData[i].value)) {
+      data[i].value = savedData[i];
+    } else {
+      data[i].value = "";
+    }
+  }
 });
