@@ -38,6 +38,7 @@ function createRow(number) {
   functionText.className = "func";
   functionButton.className = "funcButton";
   functionButton.textContent = " ƒ ";
+  functionButton.title = "None Selected";
   func.append(functionText);
   func.append(functionButton);
   newRow.append(func);
@@ -52,8 +53,6 @@ function createTable() {
     createRow(i);
   }
 }
-
-
 
 createTable();
 

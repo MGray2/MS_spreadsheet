@@ -10,7 +10,6 @@ const saveButton = document.querySelector("#saveButton");
 const loadButton = document.querySelector("#loadButton");
 const refreshButton = document.querySelector("#refresh");
 
-
 // visually see everything
 console.log(data);
 console.log(funcData);
@@ -226,8 +225,39 @@ function math(index, start, end) {
       result /= length;
       funcData[index].value = result;
     } else if (funcButton[index].textContent === "A ▼") {
+      const list = [];
       for (let i = start; i < end; i++) {
-        console.log(data[i].value);
+        if (data[i].value !== "") {
+          list.push(data[i].value);
+        }
+      }
+      const newList = list.sort();
+      console.log(newList);
+      for (let i = start; i < end; i++) {
+        if (newList[i]) {
+          data[i].value = newList[i];
+        } else {
+          data[i].value = "";
+        }
+      }
+    } else if (funcButton[index].textContent === "A ▲") {
+      const list = [];
+      for (let i = start; i < end; i++) {
+        if (data[i].value !== "") {
+          list.push(data[i].value);
+        }
+      }
+      const newList = list.sort();
+      newList.reverse();
+      console.log(newList);
+      for (let i = start; i < end; i++) {
+        if (newList[i]) {
+          data[i].value = newList[i];
+          console.log("S");
+        } else {
+          data[i].value = "";
+          console.log("fail");
+        }
       }
     }
   });
@@ -249,6 +279,7 @@ mathAll();
 // save and load functionalities
 saveButton.addEventListener("dblclick", () => {
   const information = [];
+  const information2 = [];
   for (let i = 0; i < 520; i++) {
     if (data[i].value === "") {
       information.push("");
@@ -257,12 +288,27 @@ saveButton.addEventListener("dblclick", () => {
     }
   }
   // Convert array to string before storing in local storage
-  localStorage.setItem("save1", JSON.stringify(information));
+  localStorage.setItem(
+    `Save ${dSquares[0].textContent}`,
+    JSON.stringify(information)
+  );
+  for (let i = 0; i < 520; i++) {
+    if (dSquares[i].style.backgroundColor === "") {
+      information2.push("");
+    } else {
+      information2.push(dSquares[i].style.backgroundColor);
+    }
+  }
+  localStorage.setItem(
+    `Colors ${dSquares[0].textContent}`,
+    JSON.stringify(information2)
+  );
 });
 
 // Load button event listener
 loadButton.addEventListener("dblclick", () => {
-  const savedData = localStorage.getItem("save1");
+  const savedData = localStorage.getItem(`Save ${dSquares[0].textContent}`);
+  const savedData2 = localStorage.getItem(`Colors ${dSquares[0].textContent}`);
   if (savedData) {
     // Convert string back to array when retrieving from local storage
     const parsedData = JSON.parse(savedData);
@@ -274,5 +320,40 @@ loadButton.addEventListener("dblclick", () => {
       }
     }
   }
+  if (savedData2) {
+    const parsedData2 = JSON.parse(savedData2);
+    for (let i = 0; i < 520; i++) {
+      if (parsedData2[i] !== "") {
+        dSquares[i].style.backgroundColor = parsedData2[i];
+      } else {
+        dSquares[i].style.backgroundColor = "";
+      }
+    }
+  }
 });
 
+// load any preexisting data on start
+document.addEventListener("DOMContentLoaded", () => {
+  const savedData = localStorage.getItem(`Save ${dSquares[0].textContent}`);
+  const savedData2 = localStorage.getItem(`Colors ${dSquares[0].textContent}`);
+  if (savedData) {
+    const parsedData = JSON.parse(savedData);
+    for (let i = 0; i < 520; i++) {
+      if (parsedData[i] !== "") {
+        data[i].value = parsedData[i];
+      } else {
+        data[i].value = "";
+      }
+    }
+  }
+  if (savedData2) {
+    const parsedData2 = JSON.parse(savedData2);
+    for (let i = 0; i < 520; i++) {
+      if (parsedData2[i] !== "") {
+        dSquares[i].style.backgroundColor = parsedData2[i];
+      } else {
+        dSquares[i].style.backgroundColor = "";
+      }
+    }
+  }
+});

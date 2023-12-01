@@ -57,24 +57,23 @@ html {
   height: 40px;
   width: 40px;
   margin-left: 5%;
-  background-color: lightblue;
-  border: none;
-}
-
-.deleteButton:hover {
   background-color: lightcoral;
   border: none;
 }
 
+.deleteButton:hover {
+  background-color: orangered;
+  border: none;
+}
+
 .project {
-  width: 200px;
+  width: 400px;
   height: 100px;
   border-radius: 5px;
   font-size: 16pt;
-  font-family: 'Times New Roman';
-  margin-left: 5%;
+  font-family: "Times New Roman";
+  margin-left: 10%;
   margin-top: 5%;
-  
 }
 
 .project:hover {
