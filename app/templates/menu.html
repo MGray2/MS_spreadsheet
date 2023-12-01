@@ -1,10 +1,21 @@
-{% extends "base.html" %} {% block title %}MicahSoft Workbook{% endblock %}
-{%block content %}
+{% extends "base.html" %}{% load static %} 
+{% block page %}titleBackground{% endblock page%}
+{%block title %}MicahSoft Workbook{% endblock %} {%block content %}
+
 <div class="bigTitle">
-  <h1>MicahSoft</h1>
-  <h1>Workbook</h1>
+  <h1>
+    MicahSoft <br />
+    Workbook
+  </h1>
 </div>
 <div class="projectHolder">
-  <a href="1"><button class="project">1</button></a>
+  
 </div>
+<div class="createProjectHolder">
+  
+    <button class="createProjectButton">+</button>
+    <input type="text" class="createProject" required placeholder="Name new project here"></input>
+  
+</div>
+<script src={% static "main3.js" %}?v=1></script>
 {% endblock %}

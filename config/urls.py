@@ -21,5 +21,5 @@ from app.views import landing_page, spread_sheet
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", landing_page),
-    path("1", spread_sheet),
+    path("<n>", spread_sheet),
 ]

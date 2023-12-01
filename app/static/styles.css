@@ -2,12 +2,19 @@ html {
   width: 960px;
 }
 
+.titleBackground {
+  background-image: linear-gradient(to bottom right, red, rgb(94, 1, 1));
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+}
+
 .bigTitle {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  background-image: linear-gradient(to bottom right, red, darkred);
   color: white;
+  background-color: transparent;
   font-size: 16pt;
   text-align: center;
   width: 50%;
@@ -17,21 +24,61 @@ html {
   left: 0%;
 }
 
-.projectHolder {
-  display: grid;
-  grid-template-columns: repeat(2, 100px);
-  width: 50%;
-  height: 100%;
+.createProjectHolder {
+  z-index: 4;
   position: absolute;
-  top: 0%;
+  top: 2.5%;
+  left: 60%;
+}
+
+.createProject {
+  height: 30px;
+}
+
+.createProjectButton {
+  height: 35px;
+  width: 35px;
+}
+
+.projectHolder {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly flex-start;
+  width: 50%;
+  height: 90%;
+  position: absolute;
+  top: 10%;
   left: 50%;
+  background-color: white;
+  border-radius: 30px 0px 0px 0px;
+}
+
+.deleteButton {
+  height: 40px;
+  width: 40px;
+  margin-left: 5%;
+  background-color: lightblue;
+  border: none;
+}
+
+.deleteButton:hover {
+  background-color: lightcoral;
+  border: none;
 }
 
 .project {
-  width: 100px;
+  width: 200px;
   height: 100px;
   border-radius: 5px;
-  margin: 20%;
+  font-size: 16pt;
+  font-family: 'Times New Roman';
+  margin-left: 5%;
+  margin-top: 5%;
+  
+}
+
+.project:hover {
+  cursor: pointer;
 }
 
 .buttonHolder {

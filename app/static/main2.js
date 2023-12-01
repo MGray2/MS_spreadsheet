@@ -10,10 +10,14 @@ const saveButton = document.querySelector("#saveButton");
 const loadButton = document.querySelector("#loadButton");
 const refreshButton = document.querySelector("#refresh");
 
+
 // visually see everything
 console.log(data);
 console.log(funcData);
 console.log(funcButton);
+
+dSquares[0].style.color = "transparent";
+dSquares[0].style.borderColor = "black";
 
 function colorChange(target) {
   switch (target.style.backgroundColor) {
@@ -242,6 +246,7 @@ function mathAll() {
 // functional squares are able to do math related operations
 mathAll();
 
+// save and load functionalities
 saveButton.addEventListener("dblclick", () => {
   const information = [];
   for (let i = 0; i < 520; i++) {
@@ -251,17 +256,23 @@ saveButton.addEventListener("dblclick", () => {
       information.push(data[i].value);
     }
   }
-  localStorage.setItem("save1", information);
+  // Convert array to string before storing in local storage
+  localStorage.setItem("save1", JSON.stringify(information));
 });
 
+// Load button event listener
 loadButton.addEventListener("dblclick", () => {
   const savedData = localStorage.getItem("save1");
-  console.log(savedData);
-  for (let i = 0; i < 520; i++) {
-    if (!Boolean(savedData[i].value)) {
-      data[i].value = savedData[i];
-    } else {
-      data[i].value = "";
+  if (savedData) {
+    // Convert string back to array when retrieving from local storage
+    const parsedData = JSON.parse(savedData);
+    for (let i = 0; i < 520; i++) {
+      if (parsedData[i] !== "") {
+        data[i].value = parsedData[i];
+      } else {
+        data[i].value = "";
+      }
     }
   }
 });
+
