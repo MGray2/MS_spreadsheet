@@ -231,11 +231,14 @@ function math(index, start, end) {
           list.push(data[i].value);
         }
       }
+
       const newList = list.sort();
-      console.log(newList);
+      // Update the original data array based on the sorted values
+      let sortedIndex = 0;
       for (let i = start; i < end; i++) {
-        if (newList[i]) {
-          data[i].value = newList[i];
+        if (data[i].value !== "") {
+          data[i].value = newList[sortedIndex];
+          sortedIndex++;
         } else {
           data[i].value = "";
         }
@@ -249,14 +252,13 @@ function math(index, start, end) {
       }
       const newList = list.sort();
       newList.reverse();
-      console.log(newList);
+      let sortedIndex = 0;
       for (let i = start; i < end; i++) {
-        if (newList[i]) {
-          data[i].value = newList[i];
-          console.log("S");
+        if (data[i].value !== "") {
+          data[i].value = newList[sortedIndex];
+          sortedIndex++;
         } else {
           data[i].value = "";
-          console.log("fail");
         }
       }
     }
