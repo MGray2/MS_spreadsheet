@@ -52,6 +52,11 @@ function individualColor() {
       colorChange(dSquares[i]);
     });
   }
+  for (let i = 0; i < 47; i++) {
+    fSquares[i].addEventListener("dblclick", () => {
+      colorChange(fSquares[i])
+    })
+  }
 }
 
 individualColor();
