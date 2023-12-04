@@ -46,18 +46,39 @@ function createRow(number) {
   spreadsheet.append(newRow);
 }
 
+function createHorFunctionRow(number) {
+  const newRow = document.createElement("div");
+  newRow.className = `col${number}`;
+  for (let i = 1; i < 22; i++) {
+    const square = document.createElement("div");
+    square.className = "funcSquare";
+    const area = document.createElement("textarea");
+    area.className = "func";
+    const functionButton = document.createElement("button");
+    functionButton.className = "funcButton2";
+    functionButton.textContent = " ƒ ";
+    functionButton.title = "None Selected";
+    square.append(area);
+    square.append(functionButton);
+    newRow.append(square);
+    spreadsheet.append(newRow);
+  }}
+
 // event listeners
 function createTable() {
-  body.addEventListener("load", createIndex());
+  createIndex();
   for (let i = 0; i < 26; i++) {
     createRow(i);
   }
+  createHorFunctionRow(27);
 }
+
+
 
 createTable();
 
 /*
-Im gonna be honest with you, 
+
 main.js is just for creating the table, 
-all other functions will probably be located in main2.js. 
+the real magic happens in main2.js
 */

@@ -92,9 +92,9 @@ html {
 
 .spreadSheetHolder {
   display: grid;
-  grid-template-columns: repeat(27, 100px);
+  grid-template-columns: repeat(28, 101px);
   align-content: space-evenly;
-  width: 2700px;
+  width: fit-content;
   height: fit-content;
   position: absolute;
   left: 0%;
@@ -124,6 +124,7 @@ html {
 .indexSquare:hover {
   cursor: pointer;
 }
+
 
 .funcSquare {
   width: 100px;
@@ -171,6 +172,13 @@ html {
 
 .funcButton {
   z-index: 2;
+}
+
+.funcButton2 {
+  z-index: 2;
+  position: relative;
+  top: -100%;
+  left: 75%;
 }
 
 .toolBar {
