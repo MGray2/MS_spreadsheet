@@ -22,6 +22,7 @@ html {
   position: absolute;
   top: 0%;
   left: 0%;
+  text-shadow: 3px 3px black;
 }
 
 .createProjectHolder {
@@ -59,11 +60,14 @@ html {
   margin-left: 5%;
   background-color: lightcoral;
   border: none;
+  box-shadow: 2px 2px black;
 }
 
 .deleteButton:hover {
-  background-color: orangered;
+  background-color: red;
   border: none;
+  box-shadow: 1px 1px black;
+  cursor: pointer;
 }
 
 .project {
@@ -74,6 +78,7 @@ html {
   font-family: "Times New Roman";
   margin-left: 10%;
   margin-top: 5%;
+  box-shadow: 2px 2px black;
 }
 
 .project:hover {
@@ -123,7 +128,6 @@ html {
 .indexSquare:hover {
   cursor: pointer;
 }
-
 
 .funcSquare {
   width: 100px;
@@ -219,4 +223,5 @@ html {
 .brand {
   padding-left: 4%;
   padding-right: 4%;
+  text-shadow: 2px 2px black;
 }
