@@ -10,9 +10,14 @@ const funcButton2 = document.querySelectorAll(".funcButton2");
 const saveButton = document.querySelector("#saveButton");
 const loadButton = document.querySelector("#loadButton");
 const refreshButton = document.querySelector("#refresh");
+const restoreButton = document.querySelector("#restoreButton");
+const printButton = document.querySelector("#printButton");
 
 // visually see everything
-console.log(funcData);
+console.log(iSquares);
+console.log(dSquares);
+console.log(fSquares);
+console.log(data);
 
 dSquares[0].style.color = "transparent";
 dSquares[0].style.borderColor = "black";
@@ -47,22 +52,20 @@ function colorChange(target) {
 }
 
 function individualColor() {
-  for (let i = 1; i < 521; i++) {
+  for (let i = 1; i < 1041; i++) {
     dSquares[i].addEventListener("dblclick", () => {
       colorChange(dSquares[i]);
     });
   }
-  for (let i = 0; i < 47; i++) {
+  for (let i = 0; i < 67; i++) {
     fSquares[i].addEventListener("dblclick", () => {
       colorChange(fSquares[i])
     })
   }
 }
 
-individualColor();
 // index = iSquares[n], start = let i = n, end = i < n
-
-// iSquares 0 - 25 are letters, 26 is hor function,27 - 48 are numbers
+// iSquares 0 - 25 are letters, 26 is hor function, 27+ are numbers
 function colorColumn(index, start, end, overlap) {
   index.addEventListener("click", () => {
     colorChange(index);
@@ -75,12 +78,12 @@ function colorColumn(index, start, end, overlap) {
 
 function allColumns() {
   let start = 1;
-  let end = 21;
+  let end = 41;
   let overlap = 0;
   for (let i = 0; i < 26; i++) {
     colorColumn(iSquares[i], start, end, overlap);
-    start += 20;
-    end += 20;
+    start += 40;
+    end += 40;
     overlap += 1;
   }
 }
@@ -88,7 +91,7 @@ function allColumns() {
 function colorRow(index, start, end, overlap) {
   index.addEventListener("click", () => {
     colorChange(index);
-    for (let i = start; i < end + 1; i += 20) {
+    for (let i = start; i < end + 1; i += 40) {
       dSquares[i].style.backgroundColor = index.style.backgroundColor;
     }
     fSquares[overlap].style.backgroundColor = index.style.backgroundColor;
@@ -97,9 +100,9 @@ function colorRow(index, start, end, overlap) {
 
 function allRows() {
   let start = 1;
-  let end = 501;
+  let end = 1001;
   let overlap = 26;
-  for (let i = 27; i < 47; i++) {
+  for (let i = 27; i < 67; i++) {
     colorRow(iSquares[i], start, end, overlap);
     start += 1;
     end += 1;
@@ -107,43 +110,39 @@ function allRows() {
   }
 }
 
-// iSquare 47 is the index square named 'function'
-iSquares[47].addEventListener("click", () => {
-  colorChange(iSquares[47]);
+// iSquare 67 is the index square named 'function'
+iSquares[67].addEventListener("click", () => {
+  colorChange(iSquares[67]);
   for (let i = 0; i < 26; i++) {
-    fSquares[i].style.backgroundColor = iSquares[47].style.backgroundColor;
+    fSquares[i].style.backgroundColor = iSquares[67].style.backgroundColor;
   }
-  fSquares[46].style.backgroundColor = iSquares[47].style.backgroundColor;
+  fSquares[66].style.backgroundColor = iSquares[67].style.backgroundColor;
 });
 
 // iSquare 26 is the index square named 'function'
 iSquares[26].addEventListener("click", () => {
   colorChange(iSquares[26]);
-  for (let i = 26; i < 47; i++) {
+  for (let i = 26; i < 67; i++) {
     fSquares[i].style.backgroundColor = iSquares[26].style.backgroundColor;
   }
   
 });
 
-// all squares have color functionality
-allColumns();
-allRows();
-
 // refresh button
 refreshButton.addEventListener("dblclick", () => {
-  for (let i = 0; i < 47; i++) {
+  for (let i = 0; i < 67; i++) {
     iSquares[i].style.backgroundColor = "";
   }
-  for (let i = 0; i < 521; i++) {
+  for (let i = 0; i < 1021; i++) {
     dSquares[i].style.backgroundColor = "";
   }
-  for (let i = 0; i < 520; i++) {
+  for (let i = 0; i < 1040; i++) {
     data[i].value = "";
   }
-  for (let i = 0; i < 47; i++) {
+  for (let i = 0; i < 67; i++) {
     fSquares[i].style.backgroundColor = "";
   }
-  for (let i = 0; i < 46; i++) {
+  for (let i = 0; i < 67; i++) {
     funcData[i].value = "";
   }
 });
@@ -157,20 +156,17 @@ function convertNumber(i, dataType) {
 }
 
 function numberStyle() {
-  for (let i = 0; i < 520; i++) {
+  for (let i = 0; i < 1040; i++) {
     data[i].addEventListener("input", () => {
       convertNumber(i, data);
     });
   }
-  for (let i = 0; i < 47; i++) {
+  for (let i = 0; i < 67; i++) {
     funcData[i].addEventListener("input", () => {
       convertNumber(i, funcData);
     });
   }
 }
-
-// enables numbers to be formatted on the left of the square
-numberStyle();
 
 function buttonCycle() {
   for (let i = 0; i < 26; i++) {
@@ -210,7 +206,7 @@ function buttonCycle() {
 }
 
 function buttonCycle2() {
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < 40; i++) {
     funcButton2[i].addEventListener("contextmenu", () => {
       switch (funcButton2[i].textContent) {
         case " ƒ ":
@@ -246,43 +242,38 @@ function buttonCycle2() {
   }
 }
 
-funcButton2[20].textContent = "ƒoƒ";
+funcButton2[40].textContent = "ƒoƒ";
+funcButton2[40].title = "Function Of Functions"
 
 function buttonFoF() {
   
-    funcButton2[20].addEventListener("contextmenu", () => {
-      switch (funcButton2[20].textContent) {
+    funcButton2[40].addEventListener("contextmenu", () => {
+      switch (funcButton2[40].textContent) {
         case "ƒoƒ":
-          funcButton2[20].textContent = "Add";
-          funcButton2[20].title = "Addition";
+          funcButton2[40].textContent = "Add";
+          funcButton2[40].title = "Addition";
           break;
         case "Add":
-          funcButton2[20].textContent = "Sub";
-          funcButton2[20].title = "Subtraction";
+          funcButton2[40].textContent = "Sub";
+          funcButton2[40].title = "Subtraction";
           break;
         case "Sub":
-          funcButton2[20].textContent = "Mul";
-          funcButton2[20].title = "Multiply";
+          funcButton2[40].textContent = "Mul";
+          funcButton2[40].title = "Multiply";
           break;
         case "Mul":
-          funcButton2[20].textContent = "Avg";
-          funcButton2[20].title = "Average";
+          funcButton2[40].textContent = "Avg";
+          funcButton2[40].title = "Average";
           break;
         default:
-          funcButton2[20].textContent = "ƒoƒ";
-          funcButton2[20].title = "Function of Functions";
+          funcButton2[40].textContent = "ƒoƒ";
+          funcButton2[40].title = "Function of Functions";
           break;
       }
     });
   }
 
-
-// buttons can now cycle between modes
-buttonCycle();
-buttonCycle2();
-buttonFoF();
-
-// start = 0, end = 20
+// start = 0, end = 40
 function math(index, start, end) {
   funcButton[index].addEventListener("click", () => {
     if (funcButton[index].textContent === "Add") {
@@ -363,11 +354,11 @@ function math(index, start, end) {
 
 function mathAll() {
   let start = 0;
-  let end = 20;
+  let end = 40;
   for (let i = 0; i < 26; i++) {
     math(i, start, end);
-    start += 20;
-    end += 20;
+    start += 40;
+    end += 40;
   }
 }
 
@@ -375,7 +366,7 @@ function horMath(index, start, end, display) {
   funcButton2[index].addEventListener("click", () => {
     if (funcButton2[index].textContent === "Add") {
       let result = 0;
-      for (let i = start; i < end; i += 20) {
+      for (let i = start; i < end; i += 40) {
         if (!isNaN(Number(data[i].value))) {
           result += Number(data[i].value);
         }
@@ -383,7 +374,7 @@ function horMath(index, start, end, display) {
       funcData[display].value = result;
     } else if (funcButton2[index].textContent === "Sub") {
       let result = 0;
-      for (let i = start; i < end; i += 20) {
+      for (let i = start; i < end; i += 40) {
         if (!isNaN(Number(data[i].value))) {
           result -= Number(data[i].value);
         }
@@ -391,7 +382,7 @@ function horMath(index, start, end, display) {
       funcData[display].value = result;
     } else if (funcButton2[index].textContent === "Mul") {
       let result = 1;
-      for (let i = start; i < end; i += 20) {
+      for (let i = start; i < end; i += 40) {
         if (!isNaN(Number(data[i].value)) && Number(data[i].value !== "")) {
           result *= Number(data[i].value);
         }
@@ -400,7 +391,7 @@ function horMath(index, start, end, display) {
     } else if (funcButton2[index].textContent === "Avg") {
       let result = 0;
       let length = 0;
-      for (let i = start; i < end; i += 20) {
+      for (let i = start; i < end; i += 40) {
         if (!isNaN(Number(data[i].value)) && Number(data[i].value !== "")) {
           result += Number(data[i].value);
           length++;
@@ -410,7 +401,7 @@ function horMath(index, start, end, display) {
       funcData[display].value = result;
     } else if (funcButton2[index].textContent === "A ▼") {
       const list = [];
-      for (let i = start; i < end; i += 20) {
+      for (let i = start; i < end; i += 40) {
         if (data[i].value !== "") {
           list.push(data[i].value);
         }
@@ -419,7 +410,7 @@ function horMath(index, start, end, display) {
       const newList = list.sort();
       // Update the original data array based on the sorted values
       let sortedIndex = 0;
-      for (let i = start; i < end; i += 20) {
+      for (let i = start; i < end; i += 40) {
         if (data[i].value !== "") {
           data[i].value = newList[sortedIndex];
           sortedIndex++;
@@ -429,7 +420,7 @@ function horMath(index, start, end, display) {
       }
     } else if (funcButton2[index].textContent === "A ▲") {
       const list = [];
-      for (let i = start; i < end; i += 20) {
+      for (let i = start; i < end; i += 40) {
         if (data[i].value !== "") {
           list.push(data[i].value);
         }
@@ -437,7 +428,7 @@ function horMath(index, start, end, display) {
       const newList = list.sort();
       newList.reverse();
       let sortedIndex = 0;
-      for (let i = start; i < end; i += 20) {
+      for (let i = start; i < end; i += 40) {
         if (data[i].value !== "") {
           data[i].value = newList[sortedIndex];
           sortedIndex++;
@@ -451,9 +442,9 @@ function horMath(index, start, end, display) {
 
 function horMathAll() {
   let start = 0;
-  let end = 500;
+  let end = 1000;
   let display = 26;
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < 40; i++) {
     horMath(i, start, end, display);
     start += 1;
     end += 1;
@@ -462,53 +453,48 @@ function horMathAll() {
 }
 
 function mathFoF() {
-  funcButton2[20].addEventListener("click", () => {
-    if (funcButton2[20].textContent === "Add") {
+  funcButton2[40].addEventListener("click", () => {
+    if (funcButton2[40].textContent === "Add") {
       let result = 0;
-      for (let i = 0; i < 46; i++) {
+      for (let i = 0; i < 66; i++) {
         if (!isNaN(Number(funcData[i].value))) {
           result += Number(funcData[i].value);
         }
       }
-      funcData[46].value = result;
-    } else if (funcButton2[20].textContent === "Sub") {
+      funcData[66].value = result;
+    } else if (funcButton2[40].textContent === "Sub") {
       let result = 0;
-      for (let i = 0; i < 46; i++) {
+      for (let i = 0; i < 66; i++) {
         if (!isNaN(Number(funcData[i].value))) {
           result -= Number(funcData[i].value);
         }
       }
-      funcData[46].value = result;
-    } else if (funcButton2[20].textContent === "Mul") {
+      funcData[66].value = result;
+    } else if (funcButton2[40].textContent === "Mul") {
       let result = 1;
-      for (let i = 0; i < 46; i++) {
+      for (let i = 0; i < 66; i++) {
         if (!isNaN(Number(funcData[i].value)) && Number(funcData[i].value !== "")) {
           result *= Number(funcData[i].value);
         }
       }
-      funcData[46].value = result;
-    } else if (funcButton2[20].textContent === "Avg") {
+      funcData[66].value = result;
+    } else if (funcButton2[40].textContent === "Avg") {
       let result = 0;
       let length = 0;
-      for (let i = 0; i < 46; i++) {
+      for (let i = 0; i < 66; i++) {
         if (!isNaN(Number(funcData[i].value)) && Number(funcData[i].value !== "")) {
           result += Number(funcData[i].value);
           length++;
         }
       }
       result /= length;
-      funcData[46].value = result;}})}
-
-// functional squares are able to do math related operations
-mathAll();
-horMathAll();
-mathFoF();
+      funcData[66].value = result;}})}
 
 // save and load functionalities
 saveButton.addEventListener("dblclick", () => {
   const information = [];
   const information2 = [];
-  for (let i = 0; i < 520; i++) {
+  for (let i = 0; i < 1040; i++) {
     if (data[i].value === "") {
       information.push("");
     } else {
@@ -520,7 +506,7 @@ saveButton.addEventListener("dblclick", () => {
     `Save ${dSquares[0].textContent}`,
     JSON.stringify(information)
   );
-  for (let i = 0; i < 520; i++) {
+  for (let i = 0; i < 1040; i++) {
     if (dSquares[i].style.backgroundColor === "") {
       information2.push("");
     } else {
@@ -540,7 +526,7 @@ loadButton.addEventListener("dblclick", () => {
   if (savedData) {
     // Convert string back to array when retrieving from local storage
     const parsedData = JSON.parse(savedData);
-    for (let i = 0; i < 520; i++) {
+    for (let i = 0; i < 1040; i++) {
       if (parsedData[i] !== "") {
         data[i].value = parsedData[i];
       } else {
@@ -550,7 +536,7 @@ loadButton.addEventListener("dblclick", () => {
   }
   if (savedData2) {
     const parsedData2 = JSON.parse(savedData2);
-    for (let i = 0; i < 520; i++) {
+    for (let i = 0; i < 1040; i++) {
       if (parsedData2[i] !== "") {
         dSquares[i].style.backgroundColor = parsedData2[i];
       } else {
@@ -566,7 +552,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const savedData2 = localStorage.getItem(`Colors ${dSquares[0].textContent}`);
   if (savedData) {
     const parsedData = JSON.parse(savedData);
-    for (let i = 0; i < 520; i++) {
+    for (let i = 0; i < 1040; i++) {
       if (parsedData[i] !== "") {
         data[i].value = parsedData[i];
       } else {
@@ -576,7 +562,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   if (savedData2) {
     const parsedData2 = JSON.parse(savedData2);
-    for (let i = 0; i < 520; i++) {
+    for (let i = 0; i < 1040; i++) {
       if (parsedData2[i] !== "") {
         dSquares[i].style.backgroundColor = parsedData2[i];
       } else {
@@ -585,3 +571,59 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 });
+
+restoreButton.addEventListener("dblclick", () => {
+  num = prompt("Enter file number to restore")
+  const savedData = localStorage.getItem(`Save ${num}`);
+  const savedData2 = localStorage.getItem(`Colors ${num}`);
+
+  if (savedData) {
+    const parsedData = JSON.parse(savedData);
+    for (let i = 0; i < 1040; i++) {
+      if (parsedData[i] !== "") {
+        data[i].value = parsedData[i];
+      } else {
+        data[i].value = "";
+      }
+    }
+    if (savedData2) {
+      const parsedData2 = JSON.parse(savedData2);
+      for (let i = 0; i < 1040; i++) {
+        if (parsedData2[i] !== "") {
+          dSquares[i].style.backgroundColor = parsedData2[i];
+        } else {
+          dSquares[i].style.backgroundColor = "";
+        }
+      }
+    }
+  } 
+  else if (!savedData) {
+    alert("File not found")
+  }
+})
+
+printButton.addEventListener("dblclick", () => {
+  window.print()
+})
+
+// ** Fuction Calls **
+
+// enables individual coloring by doubleclicking
+individualColor();
+
+// all squares have color functionality
+allColumns();
+allRows();
+
+// enables numbers to be formatted on the right of the square
+numberStyle();
+
+// buttons can now cycle between modes
+buttonCycle();
+buttonCycle2();
+buttonFoF();
+
+// functional squares are able to do math related operations
+mathAll();
+horMathAll();
+mathFoF();

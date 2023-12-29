@@ -3,10 +3,10 @@ const bar = document.querySelector(".createProject");
 const holder = document.querySelector(".projectHolder");
 let counter = 0;
 
-document.addEventListener("DOMContentLoaded", () => {
-  const information = localStorage.getItem("project 1");
+function loadProjects(name) {
+  const information = localStorage.getItem(name);
   if (information) {
-    counter = 1;
+    counter++
     const incoming = JSON.parse(information);
     const space = document.createElement("div");
     const project = document.createElement("a");
@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     deleteButton.className = "deleteButton";
     deleteButton.textContent = "X";
     deleteButton.addEventListener("click", () => {
-      localStorage.removeItem("project 1");
+      localStorage.removeItem(name);
     });
     button.className = incoming[0];
     button.textContent = incoming[1];
@@ -25,84 +25,24 @@ document.addEventListener("DOMContentLoaded", () => {
     project.href = incoming[2];
     holder.append(project);
   }
-});
+}
 
-document.addEventListener("DOMContentLoaded", () => {
-  const information = localStorage.getItem("project 2");
-  if (information) {
-    counter = 2;
-    const incoming = JSON.parse(information);
-    const space = document.createElement("div");
-    const project = document.createElement("a");
-    const button = document.createElement("button");
-    const deleteButton = document.createElement("button");
-    deleteButton.className = "deleteButton";
-    deleteButton.textContent = "X";
-    deleteButton.addEventListener("click", () => {
-      localStorage.removeItem("project 2");
-    });
-    button.className = incoming[0];
-    button.textContent = incoming[1];
-    space.append(button);
-    space.append(deleteButton);
-    project.append(space);
-    project.href = incoming[2];
-    holder.append(project);
-  }
-});
+loadProjects("project 1");
+loadProjects("project 2");
+loadProjects("project 3");
+loadProjects("project 4");
+loadProjects("project 5");
+loadProjects("project 6");
+loadProjects("project 7");
+loadProjects("project 8");
+loadProjects("project 9");
+loadProjects("project 10");
 
-document.addEventListener("DOMContentLoaded", () => {
-  const information = localStorage.getItem("project 3");
-  if (information) {
-    counter = 3;
-    const incoming = JSON.parse(information);
-    const space = document.createElement("div");
-    const project = document.createElement("a");
-    const button = document.createElement("button");
-    const deleteButton = document.createElement("button");
-    deleteButton.className = "deleteButton";
-    deleteButton.textContent = "X";
-    deleteButton.addEventListener("click", () => {
-      localStorage.removeItem("project 3");
-    });
-    button.className = incoming[0];
-    button.textContent = incoming[1];
-    space.append(button);
-    space.append(deleteButton);
-    project.append(space);
-    project.href = incoming[2];
-    holder.append(project);
-  }
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-  const information = localStorage.getItem("project 4");
-  if (information) {
-    counter = 4;
-    const incoming = JSON.parse(information);
-    const space = document.createElement("div");
-    const project = document.createElement("a");
-    const button = document.createElement("button");
-    const deleteButton = document.createElement("button");
-    deleteButton.className = "deleteButton";
-    deleteButton.textContent = "X";
-    deleteButton.addEventListener("click", () => {
-      localStorage.removeItem("project 4");
-    });
-    button.className = incoming[0];
-    button.textContent = incoming[1];
-    space.append(button);
-    space.append(deleteButton);
-    project.append(space);
-    project.href = incoming[2];
-    holder.append(project);
-  }
-});
 
 addButton.addEventListener("click", () => {
   if (bar.value === "") {
   } else {
-    if (counter !== 4) {
+    if (counter !== 10) {
       counter++;
       const space = document.createElement("div");
       const project = document.createElement("a");

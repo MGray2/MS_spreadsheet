@@ -67,8 +67,8 @@ html {
 }
 
 .project {
-  width: 400px;
-  height: 100px;
+  width: 200px;
+  height: 75px;
   border-radius: 5px;
   font-size: 16pt;
   font-family: "Times New Roman";
@@ -85,9 +85,8 @@ html {
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
-  width: 20%;
+  width: fit-content;
   height: auto;
-  margin-right: 2%;
 }
 
 .spreadSheetHolder {
@@ -198,16 +197,23 @@ html {
 }
 
 .tool {
-  width: 70%;
-  height: 70%;
   box-shadow: 2px 2px 2px black;
-  font-size: 16pt;
-  margin-right: 20%;
+  border: outset;
+  font-size: 10pt;
+  position: relative;
+  margin-left: 5%;
+  top: 0%;
+  left: -25%;
   text-align: center;
 }
 
 .tool:hover {
   cursor: pointer;
+}
+
+.tool:active {
+  border: inset;
+  box-shadow: none;
 }
 
 .brand {

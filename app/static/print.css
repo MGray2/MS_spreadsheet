@@ -1,0 +1,102 @@
+/* General styles */
+body {
+    width: 960px;
+  }
+  
+  /* Title Section */
+  .titleBackground {
+    background: none; /* Remove background image for printing */
+    height: auto;
+    width: 100%;
+  }
+  
+  .bigTitle {
+    display: none; /* Hide title for printing */
+  }
+  
+  .createProjectHolder {
+    display: none; /* Hide create project holder for printing */
+  }
+  
+  /* Project List */
+  .projectHolder {
+    width: 100%;
+    height: auto;
+    position: static;
+    top: auto;
+    left: auto;
+    background-color: white;
+    border-radius: 0; /* Remove border radius for printing */
+  }
+  
+  .deleteButton {
+    display: none; /* Hide delete button for printing */
+  }
+  
+  .project {
+    width: 100%;
+    height: auto;
+    border-radius: 0;
+    margin-left: 0;
+    margin-top: 0;
+  }
+  
+  /* Spreadsheet Section */
+  .spreadSheetHolder {
+    display: grid;
+    grid-template-columns: repeat(28, 51px);
+    align-content: space-evenly;
+    width: 100%; /* Use full width for printing */
+    position: static; /* Remove absolute positioning for printing */
+  }
+  
+  .dataSquare,
+  .indexSquare,
+  .funcSquare {
+    width: 50px;
+    height: 45px;
+    border-style: solid;
+    text-align: left;
+  }
+  
+  .initialRow {
+    display: flex; /* Display initial row for printing */
+    width: 100%;
+    height: auto;
+  }
+  
+  .text,
+  .func {
+    height: auto;
+    width: 100%;
+    border: none;
+    background: none;
+  }
+  
+  /* Buttons and Toolbar */
+  .funcButton,
+  .funcButton2 {
+    display: none; /* Hide function buttons for printing */
+  }
+  
+  .toolBar {
+    display: none; /* Hide toolbar for printing */
+  }
+  
+  /* Print-specific styles */
+  @media print {
+    body {
+      width: 100%; /* Use full width for printing */
+    }
+  
+    .brand {
+      display: none; /* Hide brand for printing */
+    }
+  
+    /* Adjust any other styles as needed for print layout */
+  
+    /* Force a page break after the spreadsheet */
+    .spreadSheetHolder {
+      page-break-after: always;
+    }
+  }

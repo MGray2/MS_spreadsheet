@@ -5,7 +5,7 @@ const body = document.body;
 function createIndex() {
   const newRow = document.createElement("div");
   newRow.className = "indexRow";
-  for (let i = 1; i < 21; i++) {
+  for (let i = 1; i < 41; i++) {
     const square = document.createElement("div");
     square.className = "indexSquare";
     square.textContent = i;
@@ -22,7 +22,7 @@ function createIndex() {
 function createRow(number) {
   const newRow = document.createElement("div");
   newRow.className = `col${number}`;
-  for (let i = 1; i < 21; i++) {
+  for (let i = 1; i < 41; i++) {
     const square = document.createElement("div");
     square.className = "dataSquare";
     const area = document.createElement("textarea");
@@ -49,7 +49,7 @@ function createRow(number) {
 function createHorFunctionRow(number) {
   const newRow = document.createElement("div");
   newRow.className = `col${number}`;
-  for (let i = 1; i < 22; i++) {
+  for (let i = 1; i < 42; i++) {
     const square = document.createElement("div");
     square.className = "funcSquare";
     const area = document.createElement("textarea");
