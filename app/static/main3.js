@@ -6,24 +6,30 @@ let counter = 0;
 function loadProjects(name) {
   const information = localStorage.getItem(name);
   if (information) {
-    counter++
+    counter++;
     const incoming = JSON.parse(information);
     const space = document.createElement("div");
-    const project = document.createElement("a");
     const button = document.createElement("button");
     const deleteButton = document.createElement("button");
+
     deleteButton.className = "deleteButton";
     deleteButton.textContent = "X";
     deleteButton.addEventListener("click", () => {
       localStorage.removeItem(name);
     });
+
     button.className = incoming[0];
     button.textContent = incoming[1];
-    space.append(button);
+
+    // Create the anchor element for the button
+    const projectLink = document.createElement("a");
+    projectLink.href = incoming[2];
+    projectLink.appendChild(button);
+
+    space.append(projectLink);
     space.append(deleteButton);
-    project.append(space);
-    project.href = incoming[2];
-    holder.append(project);
+
+    holder.append(space);
   }
 }
 
@@ -41,28 +47,37 @@ loadProjects("project 10");
 
 addButton.addEventListener("click", () => {
   if (bar.value === "") {
+    // handle case where bar value is empty
   } else {
     if (counter !== 10) {
       counter++;
       const space = document.createElement("div");
-      const project = document.createElement("a");
       const button = document.createElement("button");
       const deleteButton = document.createElement("button");
+
       deleteButton.className = "deleteButton";
       deleteButton.textContent = "X";
       deleteButton.addEventListener("dblclick", () => {
         localStorage.removeItem(`project ${counter}`);
       });
+
       button.className = "project";
       button.textContent = bar.value;
-      space.append(button);
+
+      // Create the anchor element for the button
+      const projectLink = document.createElement("a");
+      projectLink.href = `${counter}/${button.textContent}`;
+      projectLink.appendChild(button);
+
+      space.append(projectLink);
       space.append(deleteButton);
-      project.append(space);
-      project.href = `${counter}/${button.textContent}`;
-      holder.append(project);
-      const store = [button.className, button.textContent, project.href];
+
+      holder.append(space);
+
+      const store = [button.className, button.textContent, projectLink.href];
       localStorage.setItem(`project ${counter}`, JSON.stringify(store));
     } else {
+      // handle case where counter is 10
     }
   }
 });

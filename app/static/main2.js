@@ -319,7 +319,7 @@ function math(index, start, end) {
         }
       }
 
-      const newList = list.sort();
+      const newList = list.sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' }));
       // Update the original data array based on the sorted values
       let sortedIndex = 0;
       for (let i = start; i < end; i++) {
@@ -337,7 +337,7 @@ function math(index, start, end) {
           list.push(data[i].value);
         }
       }
-      const newList = list.sort();
+      const newList = list.sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' }));
       newList.reverse();
       let sortedIndex = 0;
       for (let i = start; i < end; i++) {
@@ -407,7 +407,7 @@ function horMath(index, start, end, display) {
         }
       }
 
-      const newList = list.sort();
+      const newList = list.sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' }));
       // Update the original data array based on the sorted values
       let sortedIndex = 0;
       for (let i = start; i < end; i += 40) {
@@ -425,7 +425,7 @@ function horMath(index, start, end, display) {
           list.push(data[i].value);
         }
       }
-      const newList = list.sort();
+      const newList = list.sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' }));
       newList.reverse();
       let sortedIndex = 0;
       for (let i = start; i < end; i += 40) {
@@ -490,62 +490,6 @@ function mathFoF() {
       result /= length;
       funcData[66].value = result;}})}
 
-// save and load functionalities
-saveButton.addEventListener("dblclick", () => {
-  const information = [];
-  const information2 = [];
-  for (let i = 0; i < 1040; i++) {
-    if (data[i].value === "") {
-      information.push("");
-    } else {
-      information.push(data[i].value);
-    }
-  }
-  // Convert array to string before storing in local storage
-  localStorage.setItem(
-    `Save ${dSquares[0].textContent}`,
-    JSON.stringify(information)
-  );
-  for (let i = 0; i < 1040; i++) {
-    if (dSquares[i].style.backgroundColor === "") {
-      information2.push("");
-    } else {
-      information2.push(dSquares[i].style.backgroundColor);
-    }
-  }
-  localStorage.setItem(
-    `Colors ${dSquares[0].textContent}`,
-    JSON.stringify(information2)
-  );
-});
-
-// Load button event listener
-loadButton.addEventListener("dblclick", () => {
-  const savedData = localStorage.getItem(`Save ${dSquares[0].textContent}`);
-  const savedData2 = localStorage.getItem(`Colors ${dSquares[0].textContent}`);
-  if (savedData) {
-    // Convert string back to array when retrieving from local storage
-    const parsedData = JSON.parse(savedData);
-    for (let i = 0; i < 1040; i++) {
-      if (parsedData[i] !== "") {
-        data[i].value = parsedData[i];
-      } else {
-        data[i].value = "";
-      }
-    }
-  }
-  if (savedData2) {
-    const parsedData2 = JSON.parse(savedData2);
-    for (let i = 0; i < 1040; i++) {
-      if (parsedData2[i] !== "") {
-        dSquares[i].style.backgroundColor = parsedData2[i];
-      } else {
-        dSquares[i].style.backgroundColor = "";
-      }
-    }
-  }
-});
-
 // load any preexisting data on start
 document.addEventListener("DOMContentLoaded", () => {
   const savedData = localStorage.getItem(`Save ${dSquares[0].textContent}`);
@@ -572,6 +516,66 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+// ** Tool Box Buttons ** 
+
+// Save
+saveButton.addEventListener("dblclick", () => {
+  const information = [];
+  const information2 = [];
+  for (let i = 0; i < 1040; i++) {
+    if (data[i].value === "") {
+      information.push("");
+    } else {
+      information.push(data[i].value);
+    }
+  }
+  // Convert array to string before storing in local storage
+  localStorage.setItem(
+    `Save ${dSquares[0].textContent}`,
+    JSON.stringify(information)
+  );
+  for (let i = 0; i < 1040; i++) {
+    if (dSquares[i].style.backgroundColor === "") {
+      information2.push("");
+    } else {
+      information2.push(dSquares[i].style.backgroundColor);
+    }
+  }
+  localStorage.setItem(
+    `Colors ${dSquares[0].textContent}`,
+    JSON.stringify(information2)
+  );
+  alert("Save Successful")
+});
+
+// Load 
+loadButton.addEventListener("dblclick", () => {
+  const savedData = localStorage.getItem(`Save ${dSquares[0].textContent}`);
+  const savedData2 = localStorage.getItem(`Colors ${dSquares[0].textContent}`);
+  if (savedData) {
+    // Convert string back to array when retrieving from local storage
+    const parsedData = JSON.parse(savedData);
+    for (let i = 0; i < 1040; i++) {
+      if (parsedData[i] !== "") {
+        data[i].value = parsedData[i];
+      } else {
+        data[i].value = "";
+      }
+    }
+  }
+  if (savedData2) {
+    const parsedData2 = JSON.parse(savedData2);
+    for (let i = 0; i < 1040; i++) {
+      if (parsedData2[i] !== "") {
+        dSquares[i].style.backgroundColor = parsedData2[i];
+      } else {
+        dSquares[i].style.backgroundColor = "";
+      }
+    }
+  }
+});
+
+// Restore
 restoreButton.addEventListener("dblclick", () => {
   num = prompt("Enter file number to restore")
   const savedData = localStorage.getItem(`Save ${num}`);
@@ -596,12 +600,14 @@ restoreButton.addEventListener("dblclick", () => {
         }
       }
     }
+    alert(`Load Successful: File ${num} -> File ${dSquares[0].textContent}`)
   } 
   else if (!savedData) {
     alert("File not found")
   }
 })
 
+// Print
 printButton.addEventListener("dblclick", () => {
   window.print()
 })
