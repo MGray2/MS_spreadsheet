@@ -176,7 +176,7 @@ function isMobileDevice() {
 function buttonCycle() {
   for (let i = 0; i < 26; i++) {
     funcButton[i].addEventListener("keydown", (e) => {
-      if (e.key == "f") {
+      if (e.key.toLowerCase() === "f") {
         switch (funcButton[i].textContent) {
           case " ƒ ":
             funcButton[i].textContent = "Add";
@@ -214,7 +214,7 @@ function buttonCycle() {
             funcButton[i].style.color = "black";
             break;
         }
-      } else if (e.key == "r") {
+      } else if (e.key.toLowerCase() === "r") {
         funcButton[i].textContent = " ƒ ";
         funcButton[i].title = "None Selected";
         funcButton[i].style.color = "black";
@@ -226,7 +226,7 @@ function buttonCycle() {
 function buttonCycle2() {
   for (let i = 0; i < 40; i++) {
     funcButton2[i].addEventListener("keydown", (e) => {
-      if (e.key == "f") {
+      if (e.key.toLowerCase() === "f") {
         switch (funcButton2[i].textContent) {
           case " ƒ ":
             funcButton2[i].textContent = "Add";
@@ -264,7 +264,7 @@ function buttonCycle2() {
             funcButton2[i].style.color = "black";
             break;
         }
-      } else if (e.key == "r") {
+      } else if (e.key.toLowerCase === "r") {
         funcButton2[i].textContent = " ƒ ";
         funcButton2[i].title = "None Selected";
         funcButton2[i].style.color = "black";
@@ -278,7 +278,7 @@ funcButton2[40].title = "None Selected";
 
 function buttonFoF() {
   funcButton2[40].addEventListener("keydown", (e) => {
-    if (e.key == "f") {
+    if (e.key.toLowerCase() === "f") {
       switch (funcButton2[40].textContent) {
         case "ƒoƒ":
           funcButton2[40].textContent = "Add";
@@ -306,7 +306,7 @@ function buttonFoF() {
           funcButton2[40].style.color = "black";
           break;
       }
-    } else if (e.key == "r") {
+    } else if (e.key.toLowerCase() === "r") {
       funcButton2[40].textContent = "ƒoƒ";
       funcButton2[40].title = "None Selected";
       funcButton2[40].style.color = "black";
@@ -674,7 +674,7 @@ restoreButton.addEventListener("dblclick", () => {
         }
       }
     }
-    alert(`Load Successful: File ${num} -> File ${dSquares[0].textContent}`);
+    alert(`Load Successful: File ${num} --> File ${dSquares[0].textContent}`);
   } else if (!savedData) {
     alert("File not found");
   }

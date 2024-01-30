@@ -39,6 +39,7 @@ function createRow(number) {
   functionButton.className = "funcButton";
   functionButton.textContent = " ƒ ";
   functionButton.title = "None Selected";
+  functionButton.tabIndex = 0;
   func.append(functionText);
   func.append(functionButton);
   newRow.append(func);
@@ -58,6 +59,7 @@ function createHorFunctionRow(number) {
     functionButton.className = "funcButton2";
     functionButton.textContent = " ƒ ";
     functionButton.title = "None Selected";
+    functionButton.tabIndex = 0;
     square.append(area);
     square.append(functionButton);
     newRow.append(square);

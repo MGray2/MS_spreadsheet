@@ -2,6 +2,7 @@ html {
   width: 960px;
 }
 
+/* Main Title Screen */
 .titleBackground {
   background-image: linear-gradient(to bottom right, red, rgb(94, 1, 1));
   background-repeat: no-repeat;
@@ -100,15 +101,18 @@ html {
   height: auto;
 }
 
+/* Spreadsheet Screen */
 .spreadSheetHolder {
   display: grid;
-  grid-template-columns: repeat(28, 101px);
+  grid-template-columns: repeat(28, 101px); 
   align-content: space-evenly;
-  width: fit-content;
-  height: fit-content;
+  width: 99vw;
+  height: 88vh;
+  overflow: scroll;
   position: absolute;
   left: 0%;
   top: 10%;
+  visibility: visible;
 }
 
 .dataSquare {
