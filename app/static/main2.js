@@ -59,8 +59,8 @@ function individualColor() {
   }
   for (let i = 0; i < 67; i++) {
     fSquares[i].addEventListener("dblclick", () => {
-      colorChange(fSquares[i])
-    })
+      colorChange(fSquares[i]);
+    });
   }
 }
 
@@ -125,7 +125,6 @@ iSquares[26].addEventListener("click", () => {
   for (let i = 26; i < 67; i++) {
     fSquares[i].style.backgroundColor = iSquares[26].style.backgroundColor;
   }
-  
 });
 
 // refresh button
@@ -167,39 +166,58 @@ function numberStyle() {
     });
   }
 }
+// Mobile Compatibility
+function isMobileDevice() {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent
+  );
+}
 
 function buttonCycle() {
   for (let i = 0; i < 26; i++) {
-    funcButton[i].addEventListener("contextmenu", () => {
-      switch (funcButton[i].textContent) {
-        case " ƒ ":
-          funcButton[i].textContent = "Add";
-          funcButton[i].title = "Addition";
-          break;
-        case "Add":
-          funcButton[i].textContent = "Sub";
-          funcButton[i].title = "Subtraction";
-          break;
-        case "Sub":
-          funcButton[i].textContent = "Mul";
-          funcButton[i].title = "Multiply";
-          break;
-        case "Mul":
-          funcButton[i].textContent = "Avg";
-          funcButton[i].title = "Average";
-          break;
-        case "Avg":
-          funcButton[i].textContent = "A ▼";
-          funcButton[i].title = "Alphabetical Ascending";
-          break;
-        case "A ▼":
-          funcButton[i].textContent = "A ▲";
-          funcButton[i].title = "Alphabetical Descending";
-          break;
-        default:
-          funcButton[i].textContent = " ƒ ";
-          funcButton[i].title = "None Selected";
-          break;
+    funcButton[i].addEventListener("keydown", (e) => {
+      if (e.key == "f") {
+        switch (funcButton[i].textContent) {
+          case " ƒ ":
+            funcButton[i].textContent = "Add";
+            funcButton[i].title = "Addition";
+            funcButton[i].style.color = "black";
+            break;
+          case "Add":
+            funcButton[i].textContent = "Sub";
+            funcButton[i].title = "Subtraction";
+            funcButton[i].style.color = "black";
+            break;
+          case "Sub":
+            funcButton[i].textContent = "Mul";
+            funcButton[i].title = "Multiply";
+            funcButton[i].style.color = "black";
+            break;
+          case "Mul":
+            funcButton[i].textContent = "Avg";
+            funcButton[i].title = "Average";
+            funcButton[i].style.color = "black";
+            break;
+          case "Avg":
+            funcButton[i].textContent = "A ▼";
+            funcButton[i].title = "Alphabetical Ascending";
+            funcButton[i].style.color = "black";
+            break;
+          case "A ▼":
+            funcButton[i].textContent = "A ▲";
+            funcButton[i].title = "Alphabetical Descending";
+            funcButton[i].style.color = "black";
+            break;
+          default:
+            funcButton[i].textContent = " ƒ ";
+            funcButton[i].title = "None Selected";
+            funcButton[i].style.color = "black";
+            break;
+        }
+      } else if (e.key == "r") {
+        funcButton[i].textContent = " ƒ ";
+        funcButton[i].title = "None Selected";
+        funcButton[i].style.color = "black";
       }
     });
   }
@@ -207,76 +225,100 @@ function buttonCycle() {
 
 function buttonCycle2() {
   for (let i = 0; i < 40; i++) {
-    funcButton2[i].addEventListener("contextmenu", () => {
-      switch (funcButton2[i].textContent) {
-        case " ƒ ":
-          funcButton2[i].textContent = "Add";
-          funcButton2[i].title = "Addition";
-          break;
-        case "Add":
-          funcButton2[i].textContent = "Sub";
-          funcButton2[i].title = "Subtraction";
-          break;
-        case "Sub":
-          funcButton2[i].textContent = "Mul";
-          funcButton2[i].title = "Multiply";
-          break;
-        case "Mul":
-          funcButton2[i].textContent = "Avg";
-          funcButton2[i].title = "Average";
-          break;
-        case "Avg":
-          funcButton2[i].textContent = "A ▼";
-          funcButton2[i].title = "Alphabetical Ascending";
-          break;
-        case "A ▼":
-          funcButton2[i].textContent = "A ▲";
-          funcButton2[i].title = "Alphabetical Descending";
-          break;
-        default:
-          funcButton2[i].textContent = " ƒ ";
-          funcButton2[i].title = "None Selected";
-          break;
+    funcButton2[i].addEventListener("keydown", (e) => {
+      if (e.key == "f") {
+        switch (funcButton2[i].textContent) {
+          case " ƒ ":
+            funcButton2[i].textContent = "Add";
+            funcButton2[i].title = "Addition";
+            funcButton2[i].style.color = "black";
+            break;
+          case "Add":
+            funcButton2[i].textContent = "Sub";
+            funcButton2[i].title = "Subtraction";
+            funcButton2[i].style.color = "black";
+            break;
+          case "Sub":
+            funcButton2[i].textContent = "Mul";
+            funcButton2[i].title = "Multiply";
+            funcButton2[i].style.color = "black";
+            break;
+          case "Mul":
+            funcButton2[i].textContent = "Avg";
+            funcButton2[i].title = "Average";
+            funcButton2[i].style.color = "black";
+            break;
+          case "Avg":
+            funcButton2[i].textContent = "A ▼";
+            funcButton2[i].title = "Alphabetical Ascending";
+            funcButton2[i].style.color = "black";
+            break;
+          case "A ▼":
+            funcButton2[i].textContent = "A ▲";
+            funcButton2[i].title = "Alphabetical Descending";
+            funcButton2[i].style.color = "black";
+            break;
+          default:
+            funcButton2[i].textContent = " ƒ ";
+            funcButton2[i].title = "None Selected";
+            funcButton2[i].style.color = "black";
+            break;
+        }
+      } else if (e.key == "r") {
+        funcButton2[i].textContent = " ƒ ";
+        funcButton2[i].title = "None Selected";
+        funcButton2[i].style.color = "black";
       }
     });
   }
 }
 
 funcButton2[40].textContent = "ƒoƒ";
-funcButton2[40].title = "Function Of Functions"
+funcButton2[40].title = "None Selected";
 
 function buttonFoF() {
-  
-    funcButton2[40].addEventListener("contextmenu", () => {
+  funcButton2[40].addEventListener("keydown", (e) => {
+    if (e.key == "f") {
       switch (funcButton2[40].textContent) {
         case "ƒoƒ":
           funcButton2[40].textContent = "Add";
           funcButton2[40].title = "Addition";
+          funcButton2[40].style.color = "black";
           break;
         case "Add":
           funcButton2[40].textContent = "Sub";
           funcButton2[40].title = "Subtraction";
+          funcButton2[40].style.color = "black";
           break;
         case "Sub":
           funcButton2[40].textContent = "Mul";
           funcButton2[40].title = "Multiply";
+          funcButton2[40].style.color = "black";
           break;
         case "Mul":
           funcButton2[40].textContent = "Avg";
           funcButton2[40].title = "Average";
+          funcButton2[40].style.color = "black";
           break;
         default:
           funcButton2[40].textContent = "ƒoƒ";
-          funcButton2[40].title = "Function of Functions";
+          funcButton2[40].title = "None Selected";
+          funcButton2[40].style.color = "black";
           break;
       }
-    });
-  }
+    } else if (e.key == "r") {
+      funcButton2[40].textContent = "ƒoƒ";
+      funcButton2[40].title = "None Selected";
+      funcButton2[40].style.color = "black";
+    }
+  });
+}
 
 // start = 0, end = 40
 function math(index, start, end) {
   funcButton[index].addEventListener("click", () => {
     if (funcButton[index].textContent === "Add") {
+      funcButton[index].style.color = "darkred";
       let result = 0;
       for (let i = start; i < end; i++) {
         if (!isNaN(Number(data[i].value))) {
@@ -285,6 +327,7 @@ function math(index, start, end) {
       }
       funcData[index].value = result;
     } else if (funcButton[index].textContent === "Sub") {
+      funcButton[index].style.color = "darkred";
       let result = 0;
       for (let i = start; i < end; i++) {
         if (!isNaN(Number(data[i].value))) {
@@ -293,6 +336,7 @@ function math(index, start, end) {
       }
       funcData[index].value = result;
     } else if (funcButton[index].textContent === "Mul") {
+      funcButton[index].style.color = "darkred";
       let result = 1;
       for (let i = start; i < end; i++) {
         if (!isNaN(Number(data[i].value)) && Number(data[i].value !== "")) {
@@ -301,6 +345,7 @@ function math(index, start, end) {
       }
       funcData[index].value = result;
     } else if (funcButton[index].textContent === "Avg") {
+      funcButton[index].style.color = "darkred";
       let result = 0;
       let length = 0;
       for (let i = start; i < end; i++) {
@@ -312,6 +357,7 @@ function math(index, start, end) {
       result /= length;
       funcData[index].value = result;
     } else if (funcButton[index].textContent === "A ▼") {
+      funcButton[index].style.color = "darkred";
       const list = [];
       for (let i = start; i < end; i++) {
         if (data[i].value !== "") {
@@ -319,7 +365,9 @@ function math(index, start, end) {
         }
       }
 
-      const newList = list.sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' }));
+      const newList = list.sort((a, b) =>
+        a.localeCompare(b, undefined, { sensitivity: "base" })
+      );
       // Update the original data array based on the sorted values
       let sortedIndex = 0;
       for (let i = start; i < end; i++) {
@@ -331,13 +379,16 @@ function math(index, start, end) {
         }
       }
     } else if (funcButton[index].textContent === "A ▲") {
+      funcButton[index].style.color = "darkred";
       const list = [];
       for (let i = start; i < end; i++) {
         if (data[i].value !== "") {
           list.push(data[i].value);
         }
       }
-      const newList = list.sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' }));
+      const newList = list.sort((a, b) =>
+        a.localeCompare(b, undefined, { sensitivity: "base" })
+      );
       newList.reverse();
       let sortedIndex = 0;
       for (let i = start; i < end; i++) {
@@ -365,6 +416,7 @@ function mathAll() {
 function horMath(index, start, end, display) {
   funcButton2[index].addEventListener("click", () => {
     if (funcButton2[index].textContent === "Add") {
+      funcButton2[index].style.color = "darkred";
       let result = 0;
       for (let i = start; i < end; i += 40) {
         if (!isNaN(Number(data[i].value))) {
@@ -373,6 +425,7 @@ function horMath(index, start, end, display) {
       }
       funcData[display].value = result;
     } else if (funcButton2[index].textContent === "Sub") {
+      funcButton2[index].style.color = "darkred";
       let result = 0;
       for (let i = start; i < end; i += 40) {
         if (!isNaN(Number(data[i].value))) {
@@ -381,6 +434,7 @@ function horMath(index, start, end, display) {
       }
       funcData[display].value = result;
     } else if (funcButton2[index].textContent === "Mul") {
+      funcButton2[index].style.color = "darkred";
       let result = 1;
       for (let i = start; i < end; i += 40) {
         if (!isNaN(Number(data[i].value)) && Number(data[i].value !== "")) {
@@ -389,6 +443,7 @@ function horMath(index, start, end, display) {
       }
       funcData[display].value = result;
     } else if (funcButton2[index].textContent === "Avg") {
+      funcButton2[index].style.color = "darkred";
       let result = 0;
       let length = 0;
       for (let i = start; i < end; i += 40) {
@@ -400,6 +455,7 @@ function horMath(index, start, end, display) {
       result /= length;
       funcData[display].value = result;
     } else if (funcButton2[index].textContent === "A ▼") {
+      funcButton2[index].style.color = "darkred";
       const list = [];
       for (let i = start; i < end; i += 40) {
         if (data[i].value !== "") {
@@ -407,7 +463,9 @@ function horMath(index, start, end, display) {
         }
       }
 
-      const newList = list.sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' }));
+      const newList = list.sort((a, b) =>
+        a.localeCompare(b, undefined, { sensitivity: "base" })
+      );
       // Update the original data array based on the sorted values
       let sortedIndex = 0;
       for (let i = start; i < end; i += 40) {
@@ -419,13 +477,16 @@ function horMath(index, start, end, display) {
         }
       }
     } else if (funcButton2[index].textContent === "A ▲") {
+      funcButton2[index].style.color = "darkred";
       const list = [];
       for (let i = start; i < end; i += 40) {
         if (data[i].value !== "") {
           list.push(data[i].value);
         }
       }
-      const newList = list.sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' }));
+      const newList = list.sort((a, b) =>
+        a.localeCompare(b, undefined, { sensitivity: "base" })
+      );
       newList.reverse();
       let sortedIndex = 0;
       for (let i = start; i < end; i += 40) {
@@ -442,7 +503,7 @@ function horMath(index, start, end, display) {
 
 function horMathAll() {
   let start = 0;
-  let end = 1000;
+  let end = 1040;
   let display = 26;
   for (let i = 0; i < 40; i++) {
     horMath(i, start, end, display);
@@ -455,6 +516,7 @@ function horMathAll() {
 function mathFoF() {
   funcButton2[40].addEventListener("click", () => {
     if (funcButton2[40].textContent === "Add") {
+      funcButton2[40].style.color = "darkred";
       let result = 0;
       for (let i = 0; i < 66; i++) {
         if (!isNaN(Number(funcData[i].value))) {
@@ -463,6 +525,7 @@ function mathFoF() {
       }
       funcData[66].value = result;
     } else if (funcButton2[40].textContent === "Sub") {
+      funcButton2[40].style.color = "darkred";
       let result = 0;
       for (let i = 0; i < 66; i++) {
         if (!isNaN(Number(funcData[i].value))) {
@@ -471,24 +534,35 @@ function mathFoF() {
       }
       funcData[66].value = result;
     } else if (funcButton2[40].textContent === "Mul") {
+      funcButton2[40].style.color = "darkred";
       let result = 1;
       for (let i = 0; i < 66; i++) {
-        if (!isNaN(Number(funcData[i].value)) && Number(funcData[i].value !== "")) {
+        if (
+          !isNaN(Number(funcData[i].value)) &&
+          Number(funcData[i].value !== "")
+        ) {
           result *= Number(funcData[i].value);
         }
       }
       funcData[66].value = result;
     } else if (funcButton2[40].textContent === "Avg") {
+      funcButton2[40].style.color = "darkred";
       let result = 0;
       let length = 0;
       for (let i = 0; i < 66; i++) {
-        if (!isNaN(Number(funcData[i].value)) && Number(funcData[i].value !== "")) {
+        if (
+          !isNaN(Number(funcData[i].value)) &&
+          Number(funcData[i].value !== "")
+        ) {
           result += Number(funcData[i].value);
           length++;
         }
       }
       result /= length;
-      funcData[66].value = result;}})}
+      funcData[66].value = result;
+    }
+  });
+}
 
 // load any preexisting data on start
 document.addEventListener("DOMContentLoaded", () => {
@@ -516,7 +590,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// ** Tool Box Buttons ** 
+// ** Tool Box Buttons **
 
 // Save
 saveButton.addEventListener("dblclick", () => {
@@ -545,10 +619,10 @@ saveButton.addEventListener("dblclick", () => {
     `Colors ${dSquares[0].textContent}`,
     JSON.stringify(information2)
   );
-  alert("Save Successful")
+  alert("Save Successful");
 });
 
-// Load 
+// Load
 loadButton.addEventListener("dblclick", () => {
   const savedData = localStorage.getItem(`Save ${dSquares[0].textContent}`);
   const savedData2 = localStorage.getItem(`Colors ${dSquares[0].textContent}`);
@@ -577,7 +651,7 @@ loadButton.addEventListener("dblclick", () => {
 
 // Restore
 restoreButton.addEventListener("dblclick", () => {
-  num = prompt("Enter file number to restore")
+  num = prompt("Enter file number to restore");
   const savedData = localStorage.getItem(`Save ${num}`);
   const savedData2 = localStorage.getItem(`Colors ${num}`);
 
@@ -600,17 +674,16 @@ restoreButton.addEventListener("dblclick", () => {
         }
       }
     }
-    alert(`Load Successful: File ${num} -> File ${dSquares[0].textContent}`)
-  } 
-  else if (!savedData) {
-    alert("File not found")
+    alert(`Load Successful: File ${num} -> File ${dSquares[0].textContent}`);
+  } else if (!savedData) {
+    alert("File not found");
   }
-})
+});
 
 // Print
 printButton.addEventListener("dblclick", () => {
-  window.print()
-})
+  window.print();
+});
 
 // ** Fuction Calls **
 
