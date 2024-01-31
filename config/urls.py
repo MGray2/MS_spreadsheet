@@ -16,10 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from app.views import landing_page, spread_sheet
+from app.views import *
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", landing_page),
     path("<n>/<name>", spread_sheet),
+    path("help", table_of_contents, name="help"),
 ]

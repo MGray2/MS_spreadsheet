@@ -11,7 +11,10 @@
       Restore
     </button>
     <button id="printButton" class="tool" title="Print">Print</button>
-    <button id="helpButton" class="tool" title="View Instructions">Help</button>
+
+    <button id="helpButton" class="tool" title="View Instructions">
+      <a href={% url "help" %}>Help</a>
+    </button>
   </div>
 </div>
 
@@ -45,6 +48,5 @@
   <div class="indexSquare">Z</div>
   <div class="indexSquare">Function</div>
 </div>
-
 
 {% endblock content %}

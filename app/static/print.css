@@ -48,6 +48,7 @@ body {
     align-content: space-evenly;
     width: 100%; /* Use full width for printing */
     position: static; /* Remove absolute positioning for printing */
+    overflow: visible;
   }
   
   .dataSquare,

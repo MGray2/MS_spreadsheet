@@ -105,14 +105,15 @@ html {
 .spreadSheetHolder {
   display: grid;
   grid-template-columns: repeat(28, 101px); 
-  align-content: space-evenly;
-  width: 99vw;
-  height: 88vh;
-  overflow: scroll;
+  align-content: start;
   position: absolute;
   left: 0%;
   top: 10%;
-  visibility: visible;
+  width: 98vw;
+  height: 90%;
+  overflow: scroll;
+  
+
 }
 
 .dataSquare {
@@ -200,7 +201,9 @@ html {
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  max-width: 100vw;
   height: 10%;
+  max-height: 70px;
   background-image: linear-gradient(to bottom right, red, darkred);
   color: white;
   font-family: "Franklin Gothic Medium";
@@ -234,4 +237,9 @@ html {
   padding-left: 4%;
   padding-right: 4%;
   text-shadow: 2px 2px black;
+}
+
+#helpButton a {
+  text-decoration: none; /* Remove underline */
+  color: inherit; /* Inherit the color from the parent */
 }
