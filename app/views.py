@@ -15,5 +15,9 @@ def spread_sheet(request: HttpRequest, n, name) -> HttpResponse:
 
 
 def table_of_contents(request):
+    return render(request, "manual.html")
+
+
+def topic_page(request, topic):
     context = {}
-    return render(request, "manual.html", context)
+    return render(request, "topic.html", context)

@@ -21,6 +21,7 @@ from app.views import *
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", landing_page),
-    path("<n>/<name>", spread_sheet),
+    path("<int:n>/<str:name>", spread_sheet),
     path("help", table_of_contents, name="help"),
+    path("help/<str:topic>", topic_page),
 ]
