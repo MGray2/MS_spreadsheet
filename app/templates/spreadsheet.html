@@ -4,6 +4,17 @@
 <div class="toolBar">
   <div class="brand">MicahSoft Workbook</div>
   <div class="buttonHolder">
+    <div class="customBar">
+      Row:<input type="text" placeholder="Start" maxlength="4" class="customInput" title="Cell that opperation starts on.">
+      <input type="text" placeholder="End" maxlength="4" class="customInput" title="Cell that opperation ends on.">
+      <button>F</button>
+      <input type="text" placeholder="Result" maxlength="4" class="customInput">
+      Column:<input type="text" placeholder="Start" maxlength="4" class="customInput" title="Cell that opperation starts on.">
+      <input type="text" placeholder="End" maxlength="4" class="customInput" title="Cell that opperation ends on.">
+      <button>F</button>
+      <input type="text" placeholder="Result" maxlength="4" class="customInput">
+    </div>
+    <button id="customButton" class="tool" title="Custom Function">Custom</button>
     <button id="refresh" class="tool" title="Clear">Clear</button>
     <button id="saveButton" class="tool" title="Save Recent">Save</button>
     <button id="loadButton" class="tool" title="Load Recent">Load</button>
@@ -11,7 +22,6 @@
       Restore
     </button>
     <button id="printButton" class="tool" title="Print">Print</button>
-
     <button id="helpButton" class="tool" title="View Instructions">
       <a href={% url "help" %}>Help</a>
     </button>

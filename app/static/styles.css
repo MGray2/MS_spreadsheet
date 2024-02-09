@@ -112,8 +112,6 @@ html {
   width: 98vw;
   height: 90%;
   overflow: scroll;
-  
-
 }
 
 .dataSquare {
@@ -216,12 +214,14 @@ html {
 .tool {
   box-shadow: 2px 2px 2px black;
   border: outset;
+  border-color: white;
   font-size: 10pt;
   position: relative;
-  margin-left: 5%;
+  margin: 2%;
   top: 0%;
   left: -25%;
   text-align: center;
+  background-color: white;
 }
 
 .tool:hover {
@@ -242,4 +242,32 @@ html {
 #helpButton a {
   text-decoration: none; /* Remove underline */
   color: inherit; /* Inherit the color from the parent */
+}
+
+.customBar {
+  display: none;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 600px;
+  height: fit-content; 
+  background-color: white;
+  border-style: outset;
+  border-color: white;
+  color: black;
+  font-family: 'Times New Roman';
+  position: relative;
+  top: 0%;
+  left: -50%;
+}
+
+.customInput {
+  width: 35px;
+  height: auto;
+  margin: 2%;
+}
+
+.customInput:focus {
+  outline: none;
 }

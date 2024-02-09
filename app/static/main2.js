@@ -12,6 +12,27 @@ const loadButton = document.querySelector("#loadButton");
 const refreshButton = document.querySelector("#refresh");
 const restoreButton = document.querySelector("#restoreButton");
 const printButton = document.querySelector("#printButton");
+const customButton = document.querySelector("#customButton");
+const customBar = document.querySelector(".customBar");
+
+customButton.addEventListener("click", () => {
+  if (saveButton.style.display != "none") {
+    saveButton.style.display = "none";
+    loadButton.style.display = "none";
+    refreshButton.style.display = "none";
+    restoreButton.style.display = "none";
+    printButton.style.display = "none";
+    customBar.style.display = "flex";
+
+  } else {
+    saveButton.style.display = "block";
+    loadButton.style.display = "block";
+    refreshButton.style.display = "block";
+    restoreButton.style.display = "block";
+    printButton.style.display = "block";
+    customBar.style.display = "none";
+  }
+})
 
 // visually see everything
 console.log(iSquares);
