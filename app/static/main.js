@@ -7,12 +7,12 @@ function createIndex() {
   newRow.className = "indexRow";
   for (let i = 1; i < 41; i++) {
     const square = document.createElement("div");
-    square.className = "indexSquare";
+    square.className = "indexSquare vertical";
     square.textContent = i;
     newRow.append(square);
   }
   const func = document.createElement("div");
-  func.className = "indexSquare";
+  func.className = "indexSquare vertical";
   func.textContent = "Function";
   newRow.append(func);
   spreadsheet.append(newRow);
@@ -21,7 +21,7 @@ function createIndex() {
 // all of the other tiles
 function createRow(number) {
   const newRow = document.createElement("div");
-  newRow.className = `col${number}`;
+  newRow.className = 'column';
   for (let i = 1; i < 41; i++) {
     const square = document.createElement("div");
     square.className = "dataSquare";
@@ -49,7 +49,7 @@ function createRow(number) {
 
 function createHorFunctionRow(number) {
   const newRow = document.createElement("div");
-  newRow.className = `col${number}`;
+  newRow.className = 'column';
   for (let i = 1; i < 42; i++) {
     const square = document.createElement("div");
     square.className = "funcSquare";

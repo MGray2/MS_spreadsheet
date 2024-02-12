@@ -43,6 +43,32 @@ console.log(data);
 dSquares[0].style.color = "transparent";
 dSquares[0].style.borderColor = "black";
 
+
+function makeRows() {
+  for (let i = 0; i < 41; i++) {
+    let start = 1;
+    let end = 1000;
+    let overlap = 25; // number index
+    let overflow = 1;
+    const row = document.createElement("div");
+    row.className = "row";
+    row.append(iSquares[overlap]);
+    for (let i = start; i < end; i += 40) {
+      row.append(dSquares[i])
+    }
+    row.append(fSquares[overlap]);
+    start++;
+    end++;
+    overlap++;
+    overflow++;
+  }
+  
+}
+
+makeRows();
+const rows = document.querySelectorAll(".row")
+console.log(rows)
+
 function colorChange(target) {
   switch (target.style.backgroundColor) {
     case "":
@@ -66,6 +92,9 @@ function colorChange(target) {
     case "pink":
       target.style.backgroundColor = "plum";
       break;
+    case "plum":
+      target.style.backgroundColor = "black";
+      break;
     default:
       target.style.backgroundColor = "";
       break;
@@ -74,12 +103,14 @@ function colorChange(target) {
 
 function individualColor() {
   for (let i = 1; i < 1041; i++) {
-    dSquares[i].addEventListener("dblclick", () => {
+    dSquares[i].addEventListener("keydown", (e) => {
+      if (e.code == "ShiftRight")
       colorChange(dSquares[i]);
     });
   }
   for (let i = 0; i < 67; i++) {
-    fSquares[i].addEventListener("dblclick", () => {
+    fSquares[i].addEventListener("keydown", (e) => {
+      if (e.code == "ShiftRight")
       colorChange(fSquares[i]);
     });
   }

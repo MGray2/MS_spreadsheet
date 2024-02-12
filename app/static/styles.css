@@ -104,7 +104,7 @@ html {
 /* Spreadsheet Screen */
 .spreadSheetHolder {
   display: grid;
-  grid-template-columns: repeat(28, 101px); 
+  grid-template-columns: repeat(28, auto); /* Change column width to auto */
   align-content: start;
   position: absolute;
   left: 0%;
@@ -114,8 +114,18 @@ html {
   overflow: scroll;
 }
 
+.row {
+  display: flex; /* Make the row a flex container */
+  height: fit-content;
+}
+
+.column {
+  height: 100%; /* Make sure the column fills the height of the row */
+}
+
 .dataSquare {
-  width: 100px;
+  width: 100%; /* Adjust the width to 100% */
+  min-width: 100px;
   height: 35px;
   border-style: solid;
   border-width: 1px;
@@ -125,7 +135,8 @@ html {
 }
 
 .indexSquare {
-  width: 100px;
+  width: auto; /* Allow first box to stretch horizontally */
+  min-width: 100px;
   height: 35px;
   border-style: solid;
   border-width: 1px;
@@ -134,12 +145,27 @@ html {
   word-wrap: break-word;
 }
 
+.horizontal {
+  resize: horizontal; 
+  overflow: hidden;
+}
+
+.vertical {
+  resize: vertical;
+  overflow: hidden;
+}
+
+.both {
+  resize:both;
+  overflow: hidden;
+}
+
 .indexSquare:hover {
   cursor: pointer;
 }
 
 .funcSquare {
-  width: 100px;
+  width: auto;
   height: 35px;
   border-style: solid;
   border-width: 1px;
@@ -157,12 +183,13 @@ html {
 }
 
 .text {
-  height: 32px;
-  width: 90px;
+  height: 100%;
+  width: 100%;
   border: none;
   resize: none;
   background: transparent;
   font-family: "Times New Roman";
+  font-size: medium;
 }
 
 .text:focus {
@@ -170,8 +197,8 @@ html {
 }
 
 .func {
-  height: 32px;
-  width: 90px;
+  height: 100%;
+  width: 100%;
   border: none;
   resize: none;
   background: transparent;
