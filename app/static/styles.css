@@ -116,17 +116,19 @@ html {
 
 .row {
   display: flex; /* Make the row a flex container */
-  height: fit-content;
 }
 
 .column {
   height: 100%; /* Make sure the column fills the height of the row */
+  display: flex;
+  flex-direction: column;
 }
 
 .dataSquare {
-  width: 100%; /* Adjust the width to 100% */
+  width: 100%;
   min-width: 100px;
   height: 35px;
+  min-height: 35px;
   border-style: solid;
   border-width: 1px;
   text-align: center;
@@ -137,7 +139,8 @@ html {
 .indexSquare {
   width: auto; /* Allow first box to stretch horizontally */
   min-width: 100px;
-  height: 35px;
+  height: auto;
+  min-height: 35px;
   border-style: solid;
   border-width: 1px;
   text-align: center;
@@ -165,7 +168,8 @@ html {
 }
 
 .funcSquare {
-  width: auto;
+  width: 100%;
+  min-width: 100px;
   height: 35px;
   border-style: solid;
   border-width: 1px;
