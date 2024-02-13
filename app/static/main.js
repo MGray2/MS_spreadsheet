@@ -19,7 +19,7 @@ function createIndex() {
 }
 
 // all of the other tiles
-function createRow(number) {
+function createRow() {
   const newRow = document.createElement("div");
   newRow.className = 'column';
   for (let i = 1; i < 41; i++) {
@@ -47,7 +47,7 @@ function createRow(number) {
   spreadsheet.append(newRow);
 }
 
-function createHorFunctionRow(number) {
+function createHorFunctionRow() {
   const newRow = document.createElement("div");
   newRow.className = 'column';
   for (let i = 1; i < 42; i++) {
@@ -70,9 +70,9 @@ function createHorFunctionRow(number) {
 function createTable() {
   createIndex();
   for (let i = 0; i < 26; i++) {
-    createRow(i);
+    createRow();
   }
-  createHorFunctionRow(27);
+  createHorFunctionRow();
 }
 
 

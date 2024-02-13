@@ -39,12 +39,47 @@ console.log(dSquares);
 console.log(fSquares);
 console.log(data);
 
-iSquares[27].addEventListener("mouseup", () => {
-  console.log("!");
-  for (let i = 1; i < 1002; i += 40) {
-    dSquares[i].style.height = iSquares[27].style.height;
+// iSquares[27].addEventListener("mouseup", () => {
+//   for (let i = 1; i < 1002; i += 40) {
+//     dSquares[i].style.height = iSquares[27].style.height;
+//   }
+//   fSquares[26].style.height = iSquares[27].style.height;
+// });
+
+
+function preciseStretchAdd(iSquareStart, start, end, overlap) {
+iSquares[iSquareStart].addEventListener("mouseup", () => {
+  for (let i = start; i < end; i += 40) {
+    dSquares[i].style.height = iSquares[iSquareStart].style.height;
   }
+  fSquares[overlap].style.height = iSquares[iSquareStart].style.height;
 });
+}
+
+function stretchyRows() {
+  let index = 27;
+  let start = 1;
+  let end = 1001;
+  let overlap = 26;
+  for (let i = 27; i < 66; i++) {
+    preciseStretchAdd(index, start, end, overlap);
+    index++;
+    start++;
+    end++;
+    overlap++;
+  }
+}
+
+// stretchyRows();
+
+preciseStretchAdd(27, 1, 1002, 26);
+preciseStretchAdd(28, 2, 1003, 27);
+preciseStretchAdd(29, 3, 1004, 28);
+preciseStretchAdd(30, 4, 1005, 29);
+preciseStretchAdd(31, 5, 1006, 30);
+preciseStretchAdd(32, 6, 1007, 31);
+preciseStretchAdd(33, 7, 1008, 32);
+preciseStretchAdd(34, 8, 1009, 33);
 
 dSquares[0].style.color = "transparent";
 dSquares[0].style.borderColor = "black";
@@ -97,7 +132,7 @@ function individualColor() {
 // index = iSquares[n], start = let i = n, end = i < n
 // iSquares 0 - 25 are letters, 26 is hor function, 27+ are numbers
 function colorColumn(index, start, end, overlap) {
-  index.addEventListener("click", () => {
+  index.addEventListener("dblclick", () => {
     colorChange(index);
     for (let i = start; i < end; i++) {
       dSquares[i].style.backgroundColor = index.style.backgroundColor;
@@ -119,7 +154,7 @@ function allColumns() {
 }
 
 function colorRow(index, start, end, overlap) {
-  index.addEventListener("click", () => {
+  index.addEventListener("dblclick", () => {
     colorChange(index);
     for (let i = start; i < end + 1; i += 40) {
       dSquares[i].style.backgroundColor = index.style.backgroundColor;
@@ -717,7 +752,7 @@ printButton.addEventListener("dblclick", () => {
 
 // ** Fuction Calls **
 
-// enables individual coloring by doubleclicking
+// enables individual coloring 
 individualColor();
 
 // all squares have color functionality

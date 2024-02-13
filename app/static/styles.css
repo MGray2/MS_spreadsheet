@@ -158,9 +158,18 @@ html {
   overflow: hidden;
 }
 
-.both {
+.both { /* Specifically used for the top left square */
   resize:both;
   overflow: hidden;
+  width: auto; /* Allow first box to stretch horizontally */
+  min-width: 100px;
+  height: auto;
+  min-height: 35px;
+  border-style: solid;
+  border-width: 1px;
+  text-align: center;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 .indexSquare:hover {
@@ -171,6 +180,7 @@ html {
   width: 100%;
   min-width: 100px;
   height: 35px;
+  min-height: 35px;
   border-style: solid;
   border-width: 1px;
   text-align: center;
