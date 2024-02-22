@@ -39,14 +39,6 @@ console.log(dSquares);
 console.log(fSquares);
 console.log(data);
 
-// iSquares[27].addEventListener("mouseup", () => {
-//   for (let i = 1; i < 1002; i += 40) {
-//     dSquares[i].style.height = iSquares[27].style.height;
-//   }
-//   fSquares[26].style.height = iSquares[27].style.height;
-// });
-
-
 function preciseStretchAdd(iSquareStart, start, end, overlap) {
 iSquares[iSquareStart].addEventListener("mouseup", () => {
   for (let i = start; i < end; i += 40) {
@@ -59,9 +51,9 @@ iSquares[iSquareStart].addEventListener("mouseup", () => {
 function stretchyRows() {
   let index = 27;
   let start = 1;
-  let end = 1001;
+  let end = 1002;
   let overlap = 26;
-  for (let i = 27; i < 66; i++) {
+  for (let i = 27; i < 67; i++) {
     preciseStretchAdd(index, start, end, overlap);
     index++;
     start++;
@@ -69,17 +61,6 @@ function stretchyRows() {
     overlap++;
   }
 }
-
-// stretchyRows();
-
-preciseStretchAdd(27, 1, 1002, 26);
-preciseStretchAdd(28, 2, 1003, 27);
-preciseStretchAdd(29, 3, 1004, 28);
-preciseStretchAdd(30, 4, 1005, 29);
-preciseStretchAdd(31, 5, 1006, 30);
-preciseStretchAdd(32, 6, 1007, 31);
-preciseStretchAdd(33, 7, 1008, 32);
-preciseStretchAdd(34, 8, 1009, 33);
 
 dSquares[0].style.color = "transparent";
 dSquares[0].style.borderColor = "black";
@@ -176,7 +157,7 @@ function allRows() {
 }
 
 // iSquare 67 is the index square named 'function'
-iSquares[67].addEventListener("click", () => {
+iSquares[67].addEventListener("dblclick", () => {
   colorChange(iSquares[67]);
   for (let i = 0; i < 26; i++) {
     fSquares[i].style.backgroundColor = iSquares[67].style.backgroundColor;
@@ -185,7 +166,7 @@ iSquares[67].addEventListener("click", () => {
 });
 
 // iSquare 26 is the index square named 'function'
-iSquares[26].addEventListener("click", () => {
+iSquares[26].addEventListener("dblclick", () => {
   colorChange(iSquares[26]);
   for (let i = 26; i < 67; i++) {
     fSquares[i].style.backgroundColor = iSquares[26].style.backgroundColor;
@@ -629,118 +610,150 @@ function mathFoF() {
   });
 }
 
-// load any preexisting data on start
-document.addEventListener("DOMContentLoaded", () => {
-  const savedData = localStorage.getItem(`Save ${dSquares[0].textContent}`);
-  const savedData2 = localStorage.getItem(`Colors ${dSquares[0].textContent}`);
+function load(saveNumber) {
+  // general purpose load operation
+  const savedData = localStorage.getItem(`Save ${saveNumber}`);
   if (savedData) {
-    const parsedData = JSON.parse(savedData);
+    const returnedData = JSON.parse(savedData);
+    const returnedSquareData = returnedData.squareData;
+    const returnedSquareColors = returnedData.squareColors;
+    const returnedIndexColors = returnedData.iCellColors;
+    const returnedFuncData = returnedData.fCellData;
+    const returnedFuncColors = returnedData.fCellColors;
+
+    if (returnedSquareData) {
     for (let i = 0; i < 1040; i++) {
-      if (parsedData[i] !== "") {
-        data[i].value = parsedData[i];
+      if (returnedSquareData[i] !== "") {
+        data[i].value = returnedSquareData[i];
       } else {
         data[i].value = "";
       }
     }
   }
-  if (savedData2) {
-    const parsedData2 = JSON.parse(savedData2);
+    if (returnedSquareColors) {
     for (let i = 0; i < 1040; i++) {
-      if (parsedData2[i] !== "") {
-        dSquares[i].style.backgroundColor = parsedData2[i];
+      if (returnedSquareColors[i] !== "") {
+        dSquares[i].style.backgroundColor = returnedSquareColors[i];
       } else {
         dSquares[i].style.backgroundColor = "";
       }
     }
   }
-});
+  if (returnedIndexColors) {
+    for (let i = 0; i < 68; i++) {
+      if (returnedIndexColors[i] !== "") {
+        iSquares[i].style.backgroundColor = returnedIndexColors[i];
+      } else {
+        iSquares[i].style.backgroundColor = "";
+      }
+    }
+  }
+  if (returnedFuncData) {
+    for (let i = 0; i < 67; i++) {
+      if (returnedFuncData[i] !== "") {
+        funcData[i].value = returnedFuncData[i];
+      } else {
+        funcData[i].value = "";
+      }
+      
+    }
+    
+  }
+  if (returnedFuncColors) {
+    for (let i = 0; i < 67; i++) {
+      if (returnedFuncColors[i] !== "") {
+        fSquares[i].style.backgroundColor = returnedFuncColors[i];
+      } else {
+        fSquares[i].style.backgroundColor = "";
+      }
+    }
+  }
+
+
+  return true;
+} else {
+  return false;
+}
+}
+
+// load any preexisting data on start
+document.addEventListener("DOMContentLoaded", () => load(dSquares[0].textContent));
 
 // ** Tool Box Buttons **
 
 // Save
 saveButton.addEventListener("dblclick", () => {
-  const information = [];
-  const information2 = [];
-  for (let i = 0; i < 1040; i++) {
+  const cellData = [];
+  const cellColors = [];
+  const iCellColors = [];
+  const fCellData = [];
+  const fCellColors = [];
+  for (let i = 0; i < 1040; i++) { // cell data
     if (data[i].value === "") {
-      information.push("");
+      cellData.push("");
     } else {
-      information.push(data[i].value);
+      cellData.push(data[i].value);
     }
   }
-  // Convert array to string before storing in local storage
+  for (let i = 0; i < 1040; i++) {
+    if (dSquares[i].style.backgroundColor === "") { // cell color
+      cellColors.push("");
+    } else {
+      cellColors.push(dSquares[i].style.backgroundColor);
+    }
+  }
+  for (let i = 0; i < 68; i++) {
+    if (iSquares[i].style.backgroundColor === "") { // index color
+      iCellColors.push("");
+    } else {
+      iCellColors.push(iSquares[i].style.backgroundColor);
+    }
+  }
+  for (let i = 0; i < 67; i++) {
+    if (fSquares[i].style.backgroundColor === "") { // function color
+      fCellColors.push("");
+    } else {
+      fCellColors.push(fSquares[i].style.backgroundColor);
+    }
+  }
+  for (let i = 0; i < 67; i++) {
+    if (funcData[i].value === "") {
+      fCellData.push("");
+    } else {
+      fCellData.push(funcData[i].value)
+    }
+  }
+
+
+  const memory = {
+    squareData : cellData, 
+    squareColors : cellColors, 
+    indexColors : iCellColors, 
+    functionData : fCellData, 
+    functionColors : fCellColors
+  };
+
+  // Convert memory to string before storing in local storage
   localStorage.setItem(
     `Save ${dSquares[0].textContent}`,
-    JSON.stringify(information)
+    JSON.stringify(memory)
   );
-  for (let i = 0; i < 1040; i++) {
-    if (dSquares[i].style.backgroundColor === "") {
-      information2.push("");
-    } else {
-      information2.push(dSquares[i].style.backgroundColor);
-    }
-  }
-  localStorage.setItem(
-    `Colors ${dSquares[0].textContent}`,
-    JSON.stringify(information2)
-  );
+  
   alert("Save Successful");
 });
 
 // Load
-loadButton.addEventListener("dblclick", () => {
-  const savedData = localStorage.getItem(`Save ${dSquares[0].textContent}`);
-  const savedData2 = localStorage.getItem(`Colors ${dSquares[0].textContent}`);
-  if (savedData) {
-    // Convert string back to array when retrieving from local storage
-    const parsedData = JSON.parse(savedData);
-    for (let i = 0; i < 1040; i++) {
-      if (parsedData[i] !== "") {
-        data[i].value = parsedData[i];
-      } else {
-        data[i].value = "";
-      }
-    }
-  }
-  if (savedData2) {
-    const parsedData2 = JSON.parse(savedData2);
-    for (let i = 0; i < 1040; i++) {
-      if (parsedData2[i] !== "") {
-        dSquares[i].style.backgroundColor = parsedData2[i];
-      } else {
-        dSquares[i].style.backgroundColor = "";
-      }
-    }
-  }
-});
+loadButton.addEventListener("dblclick", () => load(dSquares[0].textContent));
 
 // Restore
 restoreButton.addEventListener("dblclick", () => {
   num = prompt("Enter file number to restore");
-  const savedData = localStorage.getItem(`Save ${num}`);
-  const savedData2 = localStorage.getItem(`Colors ${num}`);
+  load(num);
+  
 
-  if (savedData) {
-    const parsedData = JSON.parse(savedData);
-    for (let i = 0; i < 1040; i++) {
-      if (parsedData[i] !== "") {
-        data[i].value = parsedData[i];
-      } else {
-        data[i].value = "";
-      }
-    }
-    if (savedData2) {
-      const parsedData2 = JSON.parse(savedData2);
-      for (let i = 0; i < 1040; i++) {
-        if (parsedData2[i] !== "") {
-          dSquares[i].style.backgroundColor = parsedData2[i];
-        } else {
-          dSquares[i].style.backgroundColor = "";
-        }
-      }
-    }
-    alert(`Load Successful: File ${num} -> File ${dSquares[0].textContent}`);
-  } else if (!savedData) {
+  if (load(num)) {
+    alert(`Load Successful: File ${num} → File ${dSquares[0].textContent}`);
+  } else if (!load(num)) {
     alert("File not found");
   }
 });
@@ -761,6 +774,9 @@ allRows();
 
 // enables numbers to be formatted on the right of the square
 numberStyle();
+
+// enables resizable rows
+stretchyRows();
 
 // buttons can now cycle between modes
 buttonCycle();

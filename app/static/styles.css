@@ -198,7 +198,7 @@ html {
 
 .text {
   height: 100%;
-  width: 100%;
+  width: 99%;
   border: none;
   resize: none;
   background: transparent;
@@ -212,7 +212,7 @@ html {
 
 .func {
   height: 100%;
-  width: 100%;
+  width: 99%;
   border: none;
   resize: none;
   background: transparent;
