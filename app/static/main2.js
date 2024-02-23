@@ -612,62 +612,64 @@ function mathFoF() {
 
 function load(saveNumber) {
   // general purpose load operation
-  const savedData = localStorage.getItem(`Save ${saveNumber}`);
-  if (savedData) {
-    const returnedData = JSON.parse(savedData);
-    const returnedSquareData = returnedData.squareData;
-    const returnedSquareColors = returnedData.squareColors;
-    const returnedIndexColors = returnedData.iCellColors;
-    const returnedFuncData = returnedData.fCellData;
-    const returnedFuncColors = returnedData.fCellColors;
+  const rawSavedData = localStorage.getItem(`Save ${saveNumber}`);
+  if (rawSavedData) {
+    const savedData = JSON.parse(rawSavedData);
 
-    if (returnedSquareData) {
+    // Square Data
     for (let i = 0; i < 1040; i++) {
-      if (returnedSquareData[i] !== "") {
-        data[i].value = returnedSquareData[i];
+      if (savedData.savedSData[i] !== "") {
+        data[i].value = savedData.savedSData[i];
       } else {
         data[i].value = "";
       }
     }
-  }
-    if (returnedSquareColors) {
+  
+    // Square Colors
     for (let i = 0; i < 1040; i++) {
-      if (returnedSquareColors[i] !== "") {
-        dSquares[i].style.backgroundColor = returnedSquareColors[i];
+      if (savedData.savedSColors[i] !== "") {
+        dSquares[i].style.backgroundColor = savedData.savedSColors[i];
       } else {
         dSquares[i].style.backgroundColor = "";
       }
     }
-  }
-  if (returnedIndexColors) {
+  
+    // Index Colors
     for (let i = 0; i < 68; i++) {
-      if (returnedIndexColors[i] !== "") {
-        iSquares[i].style.backgroundColor = returnedIndexColors[i];
+      if (savedData.savedIColors[i] !== "") {
+        iSquares[i].style.backgroundColor = savedData.savedIColors[i];
       } else {
         iSquares[i].style.backgroundColor = "";
       }
     }
-  }
-  if (returnedFuncData) {
+  
+    // Function Data
     for (let i = 0; i < 67; i++) {
-      if (returnedFuncData[i] !== "") {
-        funcData[i].value = returnedFuncData[i];
+      if (savedData.savedFData[i] !== "") {
+        funcData[i].value = savedData.savedFData[i];
       } else {
         funcData[i].value = "";
       }
       
     }
-    
-  }
-  if (returnedFuncColors) {
+  
+    // Function Colors
     for (let i = 0; i < 67; i++) {
-      if (returnedFuncColors[i] !== "") {
-        fSquares[i].style.backgroundColor = returnedFuncColors[i];
+      if (savedData.savedFColors[i] !== "") {
+        fSquares[i].style.backgroundColor = savedData.savedFColors[i];
       } else {
         fSquares[i].style.backgroundColor = "";
       }
     }
-  }
+  
+    // Index Widths
+    for (let i = 0; i < 27; i++) {
+      iSquares[i].style.width = savedData.savedIWidth[i];
+    }
+  
+  // The First Square
+  dSquares[0].style.width = savedData.savedSDim[0];
+  dSquares[0].style.height = savedData.savedSDim[1];
 
 
   return true;
@@ -683,54 +685,63 @@ document.addEventListener("DOMContentLoaded", () => load(dSquares[0].textContent
 
 // Save
 saveButton.addEventListener("dblclick", () => {
-  const cellData = [];
-  const cellColors = [];
-  const iCellColors = [];
-  const fCellData = [];
-  const fCellColors = [];
+  const dData = [];
+  const dColors = [];
+  const iColors = [];
+  const fData = [];
+  const fColors = [];
+  const iWidth = [];
+  const squareDimension = [];
   for (let i = 0; i < 1040; i++) { // cell data
     if (data[i].value === "") {
-      cellData.push("");
+      dData.push("");
     } else {
-      cellData.push(data[i].value);
+      dData.push(data[i].value);
     }
   }
   for (let i = 0; i < 1040; i++) {
     if (dSquares[i].style.backgroundColor === "") { // cell color
-      cellColors.push("");
+      dColors.push("");
     } else {
-      cellColors.push(dSquares[i].style.backgroundColor);
+      dColors.push(dSquares[i].style.backgroundColor);
     }
   }
   for (let i = 0; i < 68; i++) {
     if (iSquares[i].style.backgroundColor === "") { // index color
-      iCellColors.push("");
+      iColors.push("");
     } else {
-      iCellColors.push(iSquares[i].style.backgroundColor);
+      iColors.push(iSquares[i].style.backgroundColor);
     }
   }
   for (let i = 0; i < 67; i++) {
     if (fSquares[i].style.backgroundColor === "") { // function color
-      fCellColors.push("");
+      fColors.push("");
     } else {
-      fCellColors.push(fSquares[i].style.backgroundColor);
+      fColors.push(fSquares[i].style.backgroundColor);
     }
   }
   for (let i = 0; i < 67; i++) {
-    if (funcData[i].value === "") {
-      fCellData.push("");
+    if (funcData[i].value === "") { // function data
+      fData.push("");
     } else {
-      fCellData.push(funcData[i].value)
+      fData.push(funcData[i].value)
     }
   }
+  for (let i = 0; i < 27; i++) { // index width
+    iWidth.push(iSquares[i].style.width)
+  }
+  squareDimension.push(dSquares[0].style.width);
+  squareDimension.push(dSquares[0].style.height);
 
 
   const memory = {
-    squareData : cellData, 
-    squareColors : cellColors, 
-    indexColors : iCellColors, 
-    functionData : fCellData, 
-    functionColors : fCellColors
+    savedSData : dData, 
+    savedSColors : dColors, 
+    savedIColors : iColors, 
+    savedFData : fData, 
+    savedFColors : fColors,
+    savedIWidth : iWidth,
+    savedSDim : squareDimension
   };
 
   // Convert memory to string before storing in local storage
