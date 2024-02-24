@@ -40,13 +40,20 @@ console.log(fSquares);
 console.log(data);
 
 function preciseStretchAdd(iSquareStart, start, end, overlap) {
-iSquares[iSquareStart].addEventListener("mouseup", () => {
-  for (let i = start; i < end; i += 40) {
-    dSquares[i].style.height = iSquares[iSquareStart].style.height;
-  }
-  fSquares[overlap].style.height = iSquares[iSquareStart].style.height;
-});
+  iSquares[iSquareStart].addEventListener("mouseup", () => {
+    for (let i = start; i < end; i += 40) {
+      dSquares[i].style.height = iSquares[iSquareStart].style.height;
+    }
+    fSquares[overlap].style.height = iSquares[iSquareStart].style.height;
+  });
 }
+
+iSquares[67].addEventListener("mouseup", () => {
+  for (let i = 0; i < 26; i++) {
+    fSquares[i].style.height = iSquares[67].style.height;
+  }
+  fSquares[66].style.height = iSquares[67].style.height;
+});
 
 function stretchyRows() {
   let index = 27;
@@ -624,7 +631,7 @@ function load(saveNumber) {
         data[i].value = "";
       }
     }
-  
+
     // Square Colors
     for (let i = 0; i < 1040; i++) {
       if (savedData.savedSColors[i] !== "") {
@@ -633,7 +640,7 @@ function load(saveNumber) {
         dSquares[i].style.backgroundColor = "";
       }
     }
-  
+
     // Index Colors
     for (let i = 0; i < 68; i++) {
       if (savedData.savedIColors[i] !== "") {
@@ -642,7 +649,7 @@ function load(saveNumber) {
         iSquares[i].style.backgroundColor = "";
       }
     }
-  
+
     // Function Data
     for (let i = 0; i < 67; i++) {
       if (savedData.savedFData[i] !== "") {
@@ -650,9 +657,8 @@ function load(saveNumber) {
       } else {
         funcData[i].value = "";
       }
-      
     }
-  
+
     // Function Colors
     for (let i = 0; i < 67; i++) {
       if (savedData.savedFColors[i] !== "") {
@@ -661,25 +667,53 @@ function load(saveNumber) {
         fSquares[i].style.backgroundColor = "";
       }
     }
-  
+
     // Index Widths
     for (let i = 0; i < 27; i++) {
       iSquares[i].style.width = savedData.savedIWidth[i];
     }
-  
-  // The First Square
-  dSquares[0].style.width = savedData.savedSDim[0];
-  dSquares[0].style.height = savedData.savedSDim[1];
 
+    // The First Square
+    dSquares[0].style.width = savedData.savedSDim[0];
+    dSquares[0].style.height = savedData.savedSDim[1];
 
-  return true;
-} else {
-  return false;
-}
+    // Index Heights
+    for (let i = 27; i < 68; i++) {
+      iSquares[i].style.height = savedData.savedIHeight[i - 27];
+    }
+
+    // Correct Row Heights
+
+    let index = 27;
+    let start = 1;
+    let end = 1002;
+    let overlap = 26;
+    for (let i = 27; i < 67; i++) {
+      for (let i = start; i < end; i += 40) {
+        dSquares[i].style.height = iSquares[index].style.height;
+      }
+      fSquares[overlap].style.height = iSquares[index].style.height;
+      index++;
+      start++;
+      end++;
+      overlap++;
+    }
+
+    for (let i = 0; i < 26; i++) {
+      fSquares[i].style.height = iSquares[67].style.height;
+    }
+    fSquares[66].style.height = iSquares[67].style.height;
+
+    return true;
+  } else {
+    return false;
+  }
 }
 
 // load any preexisting data on start
-document.addEventListener("DOMContentLoaded", () => load(dSquares[0].textContent));
+document.addEventListener("DOMContentLoaded", () =>
+  load(dSquares[0].textContent)
+);
 
 // ** Tool Box Buttons **
 
@@ -692,56 +726,75 @@ saveButton.addEventListener("dblclick", () => {
   const fColors = [];
   const iWidth = [];
   const squareDimension = [];
-  for (let i = 0; i < 1040; i++) { // cell data
+  const iHeight = [];
+  // Square Data
+  for (let i = 0; i < 1040; i++) {
     if (data[i].value === "") {
       dData.push("");
     } else {
       dData.push(data[i].value);
     }
   }
+
+  // Data Colors
   for (let i = 0; i < 1040; i++) {
-    if (dSquares[i].style.backgroundColor === "") { // cell color
+    if (dSquares[i].style.backgroundColor === "") {
       dColors.push("");
     } else {
       dColors.push(dSquares[i].style.backgroundColor);
     }
   }
+
+  // Index Colors
   for (let i = 0; i < 68; i++) {
-    if (iSquares[i].style.backgroundColor === "") { // index color
+    if (iSquares[i].style.backgroundColor === "") {
       iColors.push("");
     } else {
       iColors.push(iSquares[i].style.backgroundColor);
     }
   }
+
+  // Function Colors
   for (let i = 0; i < 67; i++) {
-    if (fSquares[i].style.backgroundColor === "") { // function color
+    if (fSquares[i].style.backgroundColor === "") {
       fColors.push("");
     } else {
       fColors.push(fSquares[i].style.backgroundColor);
     }
   }
+
+  // Function Data
   for (let i = 0; i < 67; i++) {
-    if (funcData[i].value === "") { // function data
+    if (funcData[i].value === "") {
       fData.push("");
     } else {
-      fData.push(funcData[i].value)
+      fData.push(funcData[i].value);
     }
   }
-  for (let i = 0; i < 27; i++) { // index width
-    iWidth.push(iSquares[i].style.width)
+
+  // Width Of Indexes (A - Z)
+  for (let i = 0; i < 27; i++) {
+    iWidth.push(iSquares[i].style.width);
   }
+
+  // The First Square
   squareDimension.push(dSquares[0].style.width);
   squareDimension.push(dSquares[0].style.height);
 
+  // Height Of Indexes (1 - 40)
+  for (let i = 27; i < 68; i++) {
+    iHeight.push(iSquares[i].style.height);
+  }
 
   const memory = {
-    savedSData : dData, 
-    savedSColors : dColors, 
-    savedIColors : iColors, 
-    savedFData : fData, 
-    savedFColors : fColors,
-    savedIWidth : iWidth,
-    savedSDim : squareDimension
+    savedSData: dData,
+    savedSColors: dColors,
+    savedIColors: iColors,
+    savedFData: fData,
+    savedFColors: fColors,
+    savedIWidth: iWidth,
+    savedSDim: squareDimension,
+    savedIHeight: iHeight,
   };
 
   // Convert memory to string before storing in local storage
@@ -749,7 +802,7 @@ saveButton.addEventListener("dblclick", () => {
     `Save ${dSquares[0].textContent}`,
     JSON.stringify(memory)
   );
-  
+
   alert("Save Successful");
 });
 
@@ -760,7 +813,6 @@ loadButton.addEventListener("dblclick", () => load(dSquares[0].textContent));
 restoreButton.addEventListener("dblclick", () => {
   num = prompt("Enter file number to restore");
   load(num);
-  
 
   if (load(num)) {
     alert(`Load Successful: File ${num} → File ${dSquares[0].textContent}`);
@@ -776,7 +828,7 @@ printButton.addEventListener("dblclick", () => {
 
 // ** Fuction Calls **
 
-// enables individual coloring 
+// enables individual coloring
 individualColor();
 
 // all squares have color functionality
