@@ -217,6 +217,7 @@ html {
   resize: none;
   background: transparent;
   font-family: "Times New Roman";
+  font-size: medium;
 }
 
 .func:focus {
@@ -281,17 +282,17 @@ html {
 }
 
 #helpButton a {
-  text-decoration: none; /* Remove underline */
-  color: inherit; /* Inherit the color from the parent */
+  text-decoration: none; 
+  color: inherit; 
 }
 
 .customBar {
   display: none;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   align-items: center;
-  width: 600px;
+  width: 630px;
   height: fit-content; 
   background-color: white;
   border-style: outset;
@@ -300,11 +301,11 @@ html {
   font-family: 'Times New Roman';
   position: relative;
   top: 0%;
-  left: -50%;
+  left: -30%;
 }
 
 .customInput {
-  width: 35px;
+  width: 40px;
   height: auto;
   margin: 2%;
 }

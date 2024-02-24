@@ -1,11 +1,11 @@
-const iSquares = document.querySelectorAll(".indexSquare");
-const dSquares = document.querySelectorAll(".dataSquare");
-const fSquares = document.querySelectorAll(".funcSquare");
+const iSquares = document.querySelectorAll(".indexSquare"); // 68
+const dSquares = document.querySelectorAll(".dataSquare"); // 1041
+const fSquares = document.querySelectorAll(".funcSquare"); // 67
 
-const data = document.querySelectorAll(".text");
-const funcData = document.querySelectorAll(".func");
-const funcButton = document.querySelectorAll(".funcButton");
-const funcButton2 = document.querySelectorAll(".funcButton2");
+const data = document.querySelectorAll(".text"); // 1040
+const funcData = document.querySelectorAll(".func"); // 67
+const funcButton = document.querySelectorAll(".funcButton"); // 26
+const funcButton2 = document.querySelectorAll(".funcButton2"); // 40
 
 const saveButton = document.querySelector("#saveButton");
 const loadButton = document.querySelector("#loadButton");
@@ -14,6 +14,11 @@ const restoreButton = document.querySelector("#restoreButton");
 const printButton = document.querySelector("#printButton");
 const customButton = document.querySelector("#customButton");
 const customBar = document.querySelector(".customBar");
+
+const customStart = document.querySelectorAll(".customStart"); // 2
+const customEnd = document.querySelectorAll(".customEnd"); // 2
+const customResult = document.querySelectorAll(".customResult"); // 2
+const customFunction = document.querySelectorAll(".customFunction"); // 2
 
 customButton.addEventListener("click", () => {
   if (saveButton.style.display != "none") {
@@ -219,59 +224,122 @@ function numberStyle() {
     });
   }
 }
-// Mobile Compatibility
+// Mobile Compatibility *Unused
 function isMobileDevice() {
   return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
     navigator.userAgent
   );
 }
 
+function translator(coordinates) {
+  switch (coordinates.toLowerCase()) {
+    case "a":
+      return 0;
+    case "b":
+      return 40;
+    case "c":
+      return 80;
+    case "d":
+      return 120;
+    case "e":
+      return 160;
+    case "f":
+      return 200;
+    case "g":
+      return 240;
+    case "h":
+      return 280;
+    case "i":
+      return 320;
+    case "j":
+      return 360;
+    case "k":
+      return 400;
+    case "l":
+      return 440;
+    case "m":
+      return 480;
+    case "n":
+      return 520;
+    case "o":
+      return 560;
+    case "p":
+      return 600;
+    case "q":
+      return 640;
+    case "r":
+      return 680;
+    case "s":
+      return 720;
+    case "t":
+      return 760;
+    case "u":
+      return 800;
+    case "v":
+      return 840;
+    case "w":
+      return 880;
+    case "x":
+      return 920;
+    case "y":
+      return 960;
+    case "z":
+      return 1000;
+    default:
+      return 0;
+  }
+}
+
+function cycle(button, e) {
+  if (e.key == "f") {
+    switch (button.textContent) {
+      case " ƒ ":
+        button.textContent = "Add";
+        button.title = "Addition";
+        button.style.color = "black";
+        break;
+      case "Add":
+        button.textContent = "Sub";
+        button.title = "Subtraction";
+        button.style.color = "black";
+        break;
+      case "Sub":
+        button.textContent = "Mul";
+        button.title = "Multiply";
+        button.style.color = "black";
+        break;
+      case "Mul":
+        button.textContent = "Avg";
+        button.title = "Average";
+        button.style.color = "black";
+        break;
+      case "Avg":
+        button.textContent = "A ▼";
+        button.title = "Alphabetical Ascending";
+        button.style.color = "black";
+        break;
+      case "A ▼":
+        button.textContent = "A ▲";
+        button.title = "Alphabetical Descending";
+        button.style.color = "black";
+        break;
+      default:
+        button.textContent = " ƒ ";
+        button.title = "None Selected";
+        button.style.color = "black";
+        break;
+    }
+  } else if (e.key == "r") {
+    button.textContent = " ƒ ";
+    button.title = "None Selected";
+    button.style.color = "black";
+  }
+}
+
 function buttonCycle() {
   for (let i = 0; i < 26; i++) {
     funcButton[i].addEventListener("keydown", (e) => {
-      if (e.key == "f") {
-        switch (funcButton[i].textContent) {
-          case " ƒ ":
-            funcButton[i].textContent = "Add";
-            funcButton[i].title = "Addition";
-            funcButton[i].style.color = "black";
-            break;
-          case "Add":
-            funcButton[i].textContent = "Sub";
-            funcButton[i].title = "Subtraction";
-            funcButton[i].style.color = "black";
-            break;
-          case "Sub":
-            funcButton[i].textContent = "Mul";
-            funcButton[i].title = "Multiply";
-            funcButton[i].style.color = "black";
-            break;
-          case "Mul":
-            funcButton[i].textContent = "Avg";
-            funcButton[i].title = "Average";
-            funcButton[i].style.color = "black";
-            break;
-          case "Avg":
-            funcButton[i].textContent = "A ▼";
-            funcButton[i].title = "Alphabetical Ascending";
-            funcButton[i].style.color = "black";
-            break;
-          case "A ▼":
-            funcButton[i].textContent = "A ▲";
-            funcButton[i].title = "Alphabetical Descending";
-            funcButton[i].style.color = "black";
-            break;
-          default:
-            funcButton[i].textContent = " ƒ ";
-            funcButton[i].title = "None Selected";
-            funcButton[i].style.color = "black";
-            break;
-        }
-      } else if (e.key == "r") {
-        funcButton[i].textContent = " ƒ ";
-        funcButton[i].title = "None Selected";
-        funcButton[i].style.color = "black";
-      }
+      cycle(funcButton[i], e);
     });
   }
 }
@@ -279,51 +347,18 @@ function buttonCycle() {
 function buttonCycle2() {
   for (let i = 0; i < 40; i++) {
     funcButton2[i].addEventListener("keydown", (e) => {
-      if (e.key == "f") {
-        switch (funcButton2[i].textContent) {
-          case " ƒ ":
-            funcButton2[i].textContent = "Add";
-            funcButton2[i].title = "Addition";
-            funcButton2[i].style.color = "black";
-            break;
-          case "Add":
-            funcButton2[i].textContent = "Sub";
-            funcButton2[i].title = "Subtraction";
-            funcButton2[i].style.color = "black";
-            break;
-          case "Sub":
-            funcButton2[i].textContent = "Mul";
-            funcButton2[i].title = "Multiply";
-            funcButton2[i].style.color = "black";
-            break;
-          case "Mul":
-            funcButton2[i].textContent = "Avg";
-            funcButton2[i].title = "Average";
-            funcButton2[i].style.color = "black";
-            break;
-          case "Avg":
-            funcButton2[i].textContent = "A ▼";
-            funcButton2[i].title = "Alphabetical Ascending";
-            funcButton2[i].style.color = "black";
-            break;
-          case "A ▼":
-            funcButton2[i].textContent = "A ▲";
-            funcButton2[i].title = "Alphabetical Descending";
-            funcButton2[i].style.color = "black";
-            break;
-          default:
-            funcButton2[i].textContent = " ƒ ";
-            funcButton2[i].title = "None Selected";
-            funcButton2[i].style.color = "black";
-            break;
-        }
-      } else if (e.key == "r") {
-        funcButton2[i].textContent = " ƒ ";
-        funcButton2[i].title = "None Selected";
-        funcButton2[i].style.color = "black";
-      }
+      cycle(funcButton2[i], e);
     });
   }
+}
+
+function buttonCycle3() {
+  customFunction[0].addEventListener("keydown", (e) => {
+    cycle(customFunction[0], e);
+  });
+  customFunction[1].addEventListener("keydown", (e) => {
+    cycle(customFunction[1], e);
+  });
 }
 
 funcButton2[40].textContent = "ƒoƒ";
@@ -844,6 +879,7 @@ stretchyRows();
 // buttons can now cycle between modes
 buttonCycle();
 buttonCycle2();
+buttonCycle3();
 buttonFoF();
 
 // functional squares are able to do math related operations

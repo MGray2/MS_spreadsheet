@@ -1,20 +1,16 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en" class={% block page %}none{% endblock %}>
+<html lang="en" class="{% block page %}none{% endblock %}">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="icon"
-      href={% static "images/red_logo.png" %}
-    />
-    <link rel="stylesheet" href= {% static "styles.css" %}>
-    <link rel="stylesheet" href= {% static "print.css "%} media="print">
+    <link rel="icon" href={% static "images/red_logo.png" %} /> <link
+    rel="stylesheet" href= {% static "styles.css" %}> <link rel="stylesheet"
+    href= {% static "print.css "%} media="print">
     <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
     <title>{% block title %}Main{% endblock %}</title>
   </head>
   <body>
-    {% block content %} {% endblock %} <script src={% static "main.js" %}?v=1 ></script>
-    <script src={% static "main2.js" %}?v=1></script>
+    {% block content %} {% endblock %}
   </body>
 </html>

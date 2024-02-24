@@ -1,18 +1,21 @@
-{% extends "base.html" %} {% block title %} {{ name }} {% endblock title %}
-{%block content%}
+{% extends "base.html" %} {% load static %}
+<!---->
+{% block title %} {{ name }} {% endblock title %}
+<!---->
+{% block content %}
 
 <div class="toolBar">
   <div class="brand">MicahSoft Workbook</div>
   <div class="buttonHolder">
     <div class="customBar">
-      Row:<input type="text" placeholder="Start" maxlength="4" class="customInput" title="Cell that opperation starts on.">
-      <input type="text" placeholder="End" maxlength="4" class="customInput" title="Cell that opperation ends on.">
-      <button>F</button>
-      <input type="text" placeholder="Result" maxlength="4" class="customInput">
-      Column:<input type="text" placeholder="Start" maxlength="4" class="customInput" title="Cell that opperation starts on.">
-      <input type="text" placeholder="End" maxlength="4" class="customInput" title="Cell that opperation ends on.">
-      <button>F</button>
-      <input type="text" placeholder="Result" maxlength="4" class="customInput">
+      <div>Row:</div><input type="text" placeholder="Start" maxlength="4" class="customInput customStart" title="Cell that opperation starts on.">
+      <input type="text" placeholder="End" maxlength="4" class="customInput customEnd"  title="Cell that opperation ends on.">
+      <button class="customFunction" title="None Selected">ƒ</button>
+      <input type="text" placeholder="Result" maxlength="4" class="customInput customResult" title="Cell that the result is printed at.">
+      <div>Column:</div><input type="text" placeholder="Start" maxlength="4" class="customInput customStart" title="Cell that opperation starts on.">
+      <input type="text" placeholder="End" maxlength="4" class="customInput customEnd" title="Cell that opperation ends on.">
+      <button class="customFunction" title="None Selected">ƒ</button>
+      <input type="text" placeholder="Result" maxlength="4" class="customInput customResult" title="Cell that the result is printed at.">
     </div>
     <button id="customButton" class="tool" title="Custom Function">Custom</button>
     <button id="refresh" class="tool" title="Clear">Clear</button>
@@ -58,4 +61,6 @@
     <div class="indexSquare horizontal">Z</div>
     <div class="indexSquare horizontal">Function</div>
 </div>
+<script src={% static "main.js" %}?v=1 ></script>
+<script src={% static "main2.js" %}?v=1></script>
 {% endblock content %}
