@@ -290,6 +290,58 @@ function translator(coordinates) {
   }
 }
 
+function clearBorders() {
+  for (let i = 1; i < 1041; i++) {
+    dSquares[i].style.borderColor = "black";
+    dSquares[i].title = "";
+  }
+}
+
+function targetHighlight(startInput, color, title) {
+  startInput.addEventListener("input", () => {
+    if (startInput.value.length > 0) {
+      const k =
+        translator(startInput.value[0]) + parseInt(startInput.value.slice(1));
+      dSquares[k].style.borderColor = color;
+      dSquares[k].title = title;
+      return k; // also returns the index for later use
+    } else {
+      clearBorders();
+    }
+  });
+}
+
+// rows *in progress
+customFunction[0].addEventListener("click", () => {
+  const start =
+    translator(customStart[0].value[0]) +
+    parseInt(customStart[0].value.slice(1));
+  const end =
+    translator(customEnd[0].value[0]) + parseInt(customEnd[0].value.slice(1));
+  for (let i = start; i <= end; i += 40) {
+    dSquares[i].style.borderColor = "blue";
+  }
+});
+
+// Columns
+customFunction[1].addEventListener("click", () => {
+  const start =
+    translator(customStart[1].value[0]) +
+    parseInt(customStart[1].value.slice(1));
+  const end =
+    translator(customEnd[1].value[0]) + parseInt(customEnd[1].value.slice(1));
+  for (let i = start; i <= end; i++) {
+    dSquares[i].style.borderColor = "blue";
+  }
+});
+
+targetHighlight(customStart[0], "fuchsia", "Start");
+targetHighlight(customStart[1], "fuchsia", "Start");
+targetHighlight(customEnd[0], "lime", "End");
+targetHighlight(customEnd[1], "lime", "End");
+targetHighlight(customResult[0], "red", "Result");
+targetHighlight(customResult[1], "red", "Result");
+
 function cycle(button, e) {
   if (e.key == "f") {
     switch (button.textContent) {
