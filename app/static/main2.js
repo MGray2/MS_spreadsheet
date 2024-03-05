@@ -318,7 +318,13 @@ customFunction[0].addEventListener("click", () => {
     parseInt(customStart[0].value.slice(1));
   const end =
     translator(customEnd[0].value[0]) + parseInt(customEnd[0].value.slice(1));
-  for (let i = start; i <= end; i += 40) {
+  const row = parseInt(customEnd[0].value.slice(1));
+
+  for (let i = start; i < row + 1000; i += 40) {
+    if (i > 1000 && i !== row + 1000) {
+      i -= 1000;
+      i++;
+    }
     dSquares[i].style.borderColor = "blue";
   }
 });

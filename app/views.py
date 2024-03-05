@@ -23,46 +23,21 @@ def topic_page(request, topic):
 
     match topic:  # python switch case
         case "Toolbox":
-
-            headers = [
-                toolbox_h1,
-                toolbox_h2,
-                toolbox_h3,
-                toolbox_h4,
-                toolbox_h5,
-                toolbox_h6,
-            ]
-            paragraphs = [
-                toolbox_custom,
-                toolbox_clear,
-                toolbox_save,
-                toolbox_load,
-                toolbox_restore,
-                toolbox_print,
-            ]
-            content = zip(headers, paragraphs)
+            content = zip(toolbox_headers, toolbox_paragraphs)
 
             context = {"topic": "About Toolbox", "content": content}
         case "Hotkeys":
-            headers = [
-                hotkeys_h1,
-                hotkeys_h2,
-                hotkeys_h3,
-            ]
-            paragraphs = [
-                hotkeys_cc,
-                hotkeys_cf,
-                hotkeys_crc,
-            ]
-            content = zip(headers, paragraphs)
+            content = zip(hotkeys_headers, hotkeys_paragraphs)
 
             context = {"topic": "About Hotkeys", "content": content}
         case "SavingLoading":
-            context = {"topic": "About Saving and Loading"}
-        case "Restore":
-            context = {"topic": "About Restoring"}
+            content = zip(saveload_headers, saveload_paragraphs)
+
+            context = {"topic": "About Saving and Loading", "content": content}
         case "Functions":
-            context = {"topic": "About Functions"}
+            content = zip(function_headers, function_paragraphs)
+
+            context = {"topic": "About Functions", "content": content}
         case "_":  # this the the python-equivallent of default
             context = {"topic": ""}
 
