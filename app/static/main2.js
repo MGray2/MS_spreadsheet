@@ -38,12 +38,6 @@ customButton.addEventListener("click", () => {
   }
 });
 
-// visually see everything
-console.log(iSquares);
-console.log(dSquares);
-console.log(fSquares);
-console.log(data);
-
 function preciseStretchAdd(iSquareStart, start, end, overlap) {
   iSquares[iSquareStart].addEventListener("mouseup", () => {
     for (let i = start; i < end; i += 40) {
@@ -299,17 +293,31 @@ function clearBorders() {
 
 function targetHighlight(startInput, color, title) {
   startInput.addEventListener("input", () => {
-    if (startInput.value.length > 0) {
+    if (startInput.value.length > 1) {
       const k =
         translator(startInput.value[0]) + parseInt(startInput.value.slice(1));
       dSquares[k].style.borderColor = color;
       dSquares[k].title = title;
       return k; // also returns the index for later use
-    } else {
+    }
+  });
+}
+
+function emptySelection(targetA, targetB) {
+  targetA.addEventListener("input", () => {
+    if (targetA.value.length === 0 && targetB.value.length === 0) {
+      clearBorders();
+    }
+  });
+  targetB.addEventListener("input", () => {
+    if (targetA.value.length === 0 && targetB.value.length === 0) {
       clearBorders();
     }
   });
 }
+
+emptySelection(customStart[0], customEnd[0]);
+emptySelection(customStart[1], customEnd[1]);
 
 // rows *in progress
 customFunction[0].addEventListener("click", () => {
@@ -318,14 +326,42 @@ customFunction[0].addEventListener("click", () => {
     parseInt(customStart[0].value.slice(1));
   const end =
     translator(customEnd[0].value[0]) + parseInt(customEnd[0].value.slice(1));
-  const row = parseInt(customEnd[0].value.slice(1));
+  let rowStart = parseInt(customStart[0].value.slice(1));
+  let rowEnd = parseInt(customEnd[0].value.slice(1));
+  console.log(`Start: ${rowStart}`);
+  console.log(`End: ${rowEnd}`);
+  if (rowStart < rowEnd) {
+    for (let i = start; i < rowEnd + 1000; i += 40) {
+      dSquares[i].style.borderColor = "blue";
+      console.log(`Select: ${i}`);
+      if (i === end) {
+        dSquares[i].style.borderColor = "lime";
+        break;
+      }
+      if (i === rowStart + 1000) {
+        i = rowStart + 1 - 40;
+        if (rowStart !== rowEnd) {
+          rowStart++;
+        }
+      }
 
-  for (let i = start; i < row + 1000; i += 40) {
-    if (i > 1000 && i !== row + 1000) {
-      i -= 1000;
-      i++;
+      if (i === start) {
+        dSquares[i].style.borderColor = "fuchsia";
+      }
+      if (i === end) {
+        dSquares[i].style.borderColor = "lime";
+      }
     }
-    dSquares[i].style.borderColor = "blue";
+  } else {
+    for (let i = start; i < end; i += 40) {
+      dSquares[i].style.borderColor = "blue";
+      if (i === start) {
+        dSquares[i].style.borderColor = "fuchsia";
+      }
+      if (i === end) {
+        dSquares[i].style.borderColor = "lime";
+      }
+    }
   }
 });
 
@@ -336,8 +372,27 @@ customFunction[1].addEventListener("click", () => {
     parseInt(customStart[1].value.slice(1));
   const end =
     translator(customEnd[1].value[0]) + parseInt(customEnd[1].value.slice(1));
-  for (let i = start; i <= end; i++) {
-    dSquares[i].style.borderColor = "blue";
+
+  if (start <= end) {
+    for (let i = start; i <= end; i++) {
+      dSquares[i].style.borderColor = "blue";
+      if (i === start) {
+        dSquares[i].style.borderColor = "fuchsia";
+      }
+      if (i === end) {
+        dSquares[i].style.borderColor = "lime";
+      }
+    }
+  } else if (start > end) {
+    for (let i = end; i <= start; i++) {
+      dSquares[i].style.borderColor = "blue";
+      if (i === start) {
+        dSquares[i].style.borderColor = "fuchsia";
+      }
+      if (i === end) {
+        dSquares[i].style.borderColor = "lime";
+      }
+    }
   }
 });
 
