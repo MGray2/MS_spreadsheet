@@ -199,7 +199,7 @@ refreshButton.addEventListener("dblclick", () => {
 });
 
 function convertNumber(i, dataType) {
-  if (!isNaN(dataType[i].value) === false) {
+  if (!isNaN(dataType[i].value) === false || dataType[i].value.length === 0) {
     dataType[i].style.direction = "ltr";
   } else {
     dataType[i].style.direction = "rtl";
@@ -319,7 +319,7 @@ function emptySelection(targetA, targetB) {
 emptySelection(customStart[0], customEnd[0]);
 emptySelection(customStart[1], customEnd[1]);
 
-// rows *in progress
+// rows
 customFunction[0].addEventListener("click", () => {
   const start =
     translator(customStart[0].value[0]) +
@@ -328,12 +328,10 @@ customFunction[0].addEventListener("click", () => {
     translator(customEnd[0].value[0]) + parseInt(customEnd[0].value.slice(1));
   let rowStart = parseInt(customStart[0].value.slice(1));
   let rowEnd = parseInt(customEnd[0].value.slice(1));
-  console.log(`Start: ${rowStart}`);
-  console.log(`End: ${rowEnd}`);
   if (rowStart < rowEnd) {
+    // For loop that iterates rows from start to finish
     for (let i = start; i < rowEnd + 1000; i += 40) {
       dSquares[i].style.borderColor = "blue";
-      console.log(`Select: ${i}`);
       if (i === end) {
         dSquares[i].style.borderColor = "lime";
         break;
@@ -352,7 +350,30 @@ customFunction[0].addEventListener("click", () => {
         dSquares[i].style.borderColor = "lime";
       }
     }
+  } else if (rowStart > rowEnd) {
+    // Reverse for loop when row start is ahead of row end
+    for (let i = start; i > rowEnd - 1000; i -= 40) {
+      dSquares[i].style.borderColor = "blue";
+      if (i === end) {
+        dSquares[i].style.borderColor = "lime";
+        break;
+      }
+      if (i === rowStart) {
+        i = rowStart - 1 + 1040;
+        if (rowStart !== rowEnd) {
+          rowStart--;
+        }
+      }
+
+      if (i === start) {
+        dSquares[i].style.borderColor = "fuchsia";
+      }
+      if (i === end) {
+        dSquares[i].style.borderColor = "lime";
+      }
+    }
   } else {
+    // needed when the height of a and b are equal
     for (let i = start; i < end; i += 40) {
       dSquares[i].style.borderColor = "blue";
       if (i === start) {
@@ -374,8 +395,9 @@ customFunction[1].addEventListener("click", () => {
     translator(customEnd[1].value[0]) + parseInt(customEnd[1].value.slice(1));
 
   if (start <= end) {
+    // for loop that travels down from start to finish
     for (let i = start; i <= end; i++) {
-      dSquares[i].style.borderColor = "blue";
+      dSquares[i].style.borderColor = "cornflowerblue";
       if (i === start) {
         dSquares[i].style.borderColor = "fuchsia";
       }
@@ -384,8 +406,9 @@ customFunction[1].addEventListener("click", () => {
       }
     }
   } else if (start > end) {
-    for (let i = end; i <= start; i++) {
-      dSquares[i].style.borderColor = "blue";
+    // reverse for loop that travels up from start to finish
+    for (let i = start; i >= end; i--) {
+      dSquares[i].style.borderColor = "cornflowerblue";
       if (i === start) {
         dSquares[i].style.borderColor = "fuchsia";
       }
@@ -396,12 +419,12 @@ customFunction[1].addEventListener("click", () => {
   }
 });
 
-targetHighlight(customStart[0], "fuchsia", "Start");
-targetHighlight(customStart[1], "fuchsia", "Start");
-targetHighlight(customEnd[0], "lime", "End");
-targetHighlight(customEnd[1], "lime", "End");
-targetHighlight(customResult[0], "red", "Result");
-targetHighlight(customResult[1], "red", "Result");
+targetHighlight(customStart[0], "fuchsia", "Row Start");
+targetHighlight(customStart[1], "fuchsia", "Column Start");
+targetHighlight(customEnd[0], "lime", "Row End");
+targetHighlight(customEnd[1], "lime", "Column End");
+targetHighlight(customResult[0], "red", "Row Result");
+targetHighlight(customResult[1], "red", "Column Result");
 
 function cycle(button, e) {
   if (e.key == "f") {
