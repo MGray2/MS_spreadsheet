@@ -1,15 +1,21 @@
 {% extends "base.html" %}
 <!---->
+{% block page %}titleBackground{% endblock page%}
+<!---->
 {% block title %}Table Of Contents{% endblock title %}
 <!---->
 {% block content %}
+<div class="helpContainer">
+  <h2>MicahSoft Workbook Manual</h2>
 
-<h2>MicahSoft Workbook Manual</h2>
-<h3>Table of contents</h3>
-<ol>
-  <li><a href="help/Toolbox">Toolbox</a></li>
-  <li><a href="help/Hotkeys">Hotkeys</a></li>
-  <li><a href="help/SavingLoading">Saving/Loading</a></li>
-  <li><a href="help/Functions">Functions</a></li>
-</ol>
+  <h3>Table of contents</h3>
+  <ol>
+    <li><a href="help/Toolbox">Toolbox</a></li>
+    <li><a href="help/Hotkeys">Hotkeys</a></li>
+    <li><a href="help/SavingLoading">Saving/Loading</a></li>
+    <li><a href="help/Functions">Functions</a></li>
+  </ol>
+
+  <h4>*More content may be available in future updates.</h4>
+</div>
 {% endblock content %}

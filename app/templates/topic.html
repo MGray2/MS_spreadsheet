@@ -3,8 +3,8 @@
 {% block title %}{{ topic }}{% endblock title %}
 <!---->
 {% block content %} {% for header, paragraph in content %} <br />
-<h2>{{ header }}</h2>
-<p>{{ paragraph }}</p>
+<h2 class="helpHeader"><em>{{ header }}</em></h2>
+<p class="helpParagraph">{{ paragraph }}</p>
 <p>
   <br />
   {% endfor %} {% endblock content %}
