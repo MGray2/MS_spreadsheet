@@ -57,6 +57,7 @@ function loadProjects(name) {
     space.append(projectLink);
     space.append(deleteButton);
     space.append(renameButton);
+    space.className = "singleProjectHolder";
 
     holder.append(space);
   }
@@ -74,7 +75,7 @@ loadProjects("project 9");
 loadProjects("project 10");
 
 addButton.addEventListener("click", () => {
-  if (bar.value === "") {
+  if (bar.value === "" || bar.value.length > 50) {
     // handle case where bar value is empty
   } else {
     if (counter !== 10) {
@@ -107,7 +108,7 @@ addButton.addEventListener("click", () => {
       renameButton.title = `Rename ${button.textContent}?`;
       renameButton.addEventListener("click", () => {
         const response = prompt("Please enter a new name for your project.");
-        if (response != null && response.length !== 0) {
+        if (response != null && response.length !== 0 && response.length < 51) {
           button.textContent = response;
           projectLink.href = `${counter}/${button.textContent}`;
           const store = [
@@ -128,6 +129,7 @@ addButton.addEventListener("click", () => {
       space.append(projectLink);
       space.append(deleteButton);
       space.append(renameButton);
+      space.className = "singleProjectHolder";
 
       holder.append(space);
 

@@ -70,9 +70,8 @@ html {
   border: none;
   box-shadow: 3px 3px gray;
   position: relative;
-  left: -4%;
-  top: 25%;
-  z-index: 2;
+  left: 3%;
+  top: 45%;
 }
 
 .deleteButton:hover {
@@ -89,9 +88,8 @@ html {
   border: none;
   box-shadow: 3px 3px gray;
   position: relative;
-  left: -20%;
-  top: 26%;
-  z-index: 2;
+  left: -15%;
+  top: 45%;
 }
 
 .renameButton:hover {
@@ -119,16 +117,23 @@ html {
   background-color: blanchedalmond;
 }
 
+.singleProjectHolder {
+  display: flex;
+  width: fit-content;
+  height: fit-content;
+  align-items: center;
+}
+
+/* Spreadsheet Screen */
 .buttonHolder {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
   width: fit-content;
-  height: auto;
+  height: fit-content;
 }
 
-/* Spreadsheet Screen */
 .spreadSheetHolder {
   display: grid;
   grid-template-columns: repeat(28, auto); /* Change column width to auto */
