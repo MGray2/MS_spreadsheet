@@ -41,14 +41,28 @@ customButton.addEventListener("click", () => {
   }
 });
 
-autoSave.addEventListener("click", () => {
+function toggleAutosave() {
   if (autoSave.style.color == "black") {
-  autoSave.style.color = "green";
-  autoSave.style.borderColor = "white";
-  } else {
-    autoSave.style.color = "black";
+    autoSave.style.color = "green";
+    autoSave.style.borderColor = "white";
+    autoSave.title = "Autosave is On";
+    } else {
+      autoSave.style.color = "black";
+      autoSave.title = "Autosave is Off";
+    }
+
+}
+
+autoSave.addEventListener("click", () => {
+  toggleAutosave();
+
+    const savedData = localStorage.getItem(`Save ${dSquares[0].textContent}`);
+    const target = JSON.parse(savedData);
+    target.autoSave = false;
+    const newData = JSON.stringify(target);
+    localStorage.setItem(`Save ${dSquares[0].textContent}`, newData);
   }
-})
+)
 
 window.addEventListener("beforeunload", () => {
   if (autoSave.style.color === "green") {

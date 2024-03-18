@@ -2,6 +2,9 @@ const addButton = document.querySelector(".createProjectButton");
 const bar = document.querySelector(".createProject");
 const holder = document.querySelector(".projectHolder");
 let counter = 0;
+const loads = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const unloads = [];
+
 
 function loadProjects(name) {
   const information = localStorage.getItem(name);
@@ -13,15 +16,15 @@ function loadProjects(name) {
     const deleteButton = document.createElement("button");
     const renameButton = document.createElement("button");
 
-    button.className = incoming[0];
-    button.textContent = incoming[1];
+    button.className = "project";
+    button.textContent = incoming[0];
 
     deleteButton.className = "deleteButton";
-    deleteButton.title = `Delete ${incoming[1]}?`;
+    deleteButton.title = `Delete ${button.textContent}?`;
     deleteButton.textContent = "X";
     deleteButton.addEventListener("click", () => {
       const response = window.confirm(
-        `Are you sure you want to remove "${incoming[1]}"`
+        `Are you sure you want to remove "${button.textContent}"`
       );
       if (response) {
         localStorage.removeItem(name);
@@ -38,14 +41,12 @@ function loadProjects(name) {
       const response = prompt("Please enter a new name for your project.");
       if (response != null && response.length !== 0) {
         button.textContent = response;
-        projectLink.href = `${incoming[3]}/${button.textContent}`;
+        projectLink.href = `${incoming[1]}/${button.textContent}`;
         const store = [
-          button.className,
           button.textContent,
-          projectLink.href,
           counter,
         ];
-        localStorage.setItem(`project ${incoming[3]}`, JSON.stringify(store));
+        localStorage.setItem(`project ${incoming[1]}`, JSON.stringify(store));
       }
     });
 
@@ -60,22 +61,23 @@ function loadProjects(name) {
     space.className = "singleProjectHolder";
 
     holder.append(space);
+    return true;
+  } else {
+    return false;
   }
 }
 
-loadProjects("project 1");
-loadProjects("project 2");
-loadProjects("project 3");
-loadProjects("project 4");
-loadProjects("project 5");
-loadProjects("project 6");
-loadProjects("project 7");
-loadProjects("project 8");
-loadProjects("project 9");
-loadProjects("project 10");
+
+for (let item of loads) {
+  loadProjects(`project ${item}`);
+  if (!loadProjects(`project ${item}`)) {
+    unloads.push(item);
+  }
+}
+
 
 addButton.addEventListener("click", () => {
-  if (bar.value === "" || bar.value.length > 50) {
+  if (bar.value === "") {
     // handle case where bar value is empty
   } else {
     if (counter !== 10) {
@@ -112,9 +114,7 @@ addButton.addEventListener("click", () => {
           button.textContent = response;
           projectLink.href = `${counter}/${button.textContent}`;
           const store = [
-            button.className,
             button.textContent,
-            projectLink.href,
             counter,
           ];
           localStorage.setItem(`project ${counter}`, JSON.stringify(store));
@@ -134,9 +134,7 @@ addButton.addEventListener("click", () => {
       holder.append(space);
 
       const store = [
-        button.className,
         button.textContent,
-        projectLink.href,
         counter,
       ];
       localStorage.setItem(`project ${counter}`, JSON.stringify(store));
