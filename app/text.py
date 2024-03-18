@@ -6,7 +6,8 @@ toolbox_h2 = "Clear"
 toolbox_h3 = "Save"
 toolbox_h4 = "Load"
 toolbox_h5 = "Restore"
-toolbox_h6 = "Print"
+toolbox_h6 = "Autosave"
+toolbox_h7 = "Print"
 
 toolbox_custom = """
 This button is currently under development.
@@ -35,10 +36,13 @@ toolbox_restore = """
 The restore button is used to access data from another spreadsheet. 
 More information can be accessed by going to the article on Saving and Loading.
 """
+toolbox_autosave = """
+The autosave button will automatically save your spreadsheet should the page close before a manual save was performed. 
+Autosave will not activate when changes are made or if the save or load buttons are pressed. 
+"""
 toolbox_print = """
 The print button will bring up the printing screen and convert the spreadsheet into a more printable format.
 It is advised to print front and back as spreadsheets can take up two pages.
-The print button is accessed by double clicking the print button.
 """
 
 toolbox_headers = [
@@ -48,6 +52,7 @@ toolbox_headers = [
     toolbox_h4,
     toolbox_h5,
     toolbox_h6,
+    toolbox_h7,
 ]
 
 toolbox_paragraphs = [
@@ -56,6 +61,7 @@ toolbox_paragraphs = [
     toolbox_save,
     toolbox_load,
     toolbox_restore,
+    toolbox_autosave,
     toolbox_print,
 ]
 

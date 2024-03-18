@@ -14,6 +14,7 @@ const restoreButton = document.querySelector("#restoreButton");
 const printButton = document.querySelector("#printButton");
 const customButton = document.querySelector("#customButton");
 const customBar = document.querySelector(".customBar");
+const autoSave = document.querySelector("#autoSave");
 
 const customStart = document.querySelectorAll(".customStart"); // 2
 const customEnd = document.querySelectorAll(".customEnd"); // 2
@@ -28,6 +29,7 @@ customButton.addEventListener("click", () => {
     restoreButton.style.display = "none";
     printButton.style.display = "none";
     customBar.style.display = "flex";
+    autoSave.style.display = "none";
   } else {
     saveButton.style.display = "block";
     loadButton.style.display = "block";
@@ -35,8 +37,24 @@ customButton.addEventListener("click", () => {
     restoreButton.style.display = "block";
     printButton.style.display = "block";
     customBar.style.display = "none";
+    autoSave.style.display = "block";
   }
 });
+
+autoSave.addEventListener("click", () => {
+  if (autoSave.style.color == "black") {
+  autoSave.style.color = "green";
+  autoSave.style.borderColor = "white";
+  } else {
+    autoSave.style.color = "black";
+  }
+})
+
+window.addEventListener("beforeunload", () => {
+  if (autoSave.style.color === "green") {
+    save();
+  }
+})
 
 function preciseStretchAdd(iSquareStart, start, end, overlap) {
   iSquares[iSquareStart].addEventListener("mouseup", () => {
@@ -875,6 +893,11 @@ function load(saveNumber) {
     }
     fSquares[66].style.height = iSquares[67].style.height;
 
+    if (savedData.autoSave) {
+      autoSave.style.color = "green";
+      autoSave.style.borderColor = "white";
+    }
+
     return true;
   } else {
     return false;
@@ -888,8 +911,7 @@ document.addEventListener("DOMContentLoaded", () =>
 
 // ** Tool Box Buttons **
 
-// Save
-saveButton.addEventListener("dblclick", () => {
+function save() {
   const dData = [];
   const dColors = [];
   const iColors = [];
@@ -966,6 +988,7 @@ saveButton.addEventListener("dblclick", () => {
     savedIWidth: iWidth,
     savedSDim: squareDimension,
     savedIHeight: iHeight,
+    autoSave: autoSave.style.color === "green" ? true : false,
   };
 
   // Convert memory to string before storing in local storage
@@ -973,6 +996,11 @@ saveButton.addEventListener("dblclick", () => {
     `Save ${dSquares[0].textContent}`,
     JSON.stringify(memory)
   );
+}
+
+// Save
+saveButton.addEventListener("dblclick", () => {
+  save();
 
   alert("Save Successful");
 });
@@ -993,7 +1021,7 @@ restoreButton.addEventListener("dblclick", () => {
 });
 
 // Print
-printButton.addEventListener("dblclick", () => {
+printButton.addEventListener("click", () => {
   window.print();
 });
 
