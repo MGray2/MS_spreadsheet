@@ -1,7 +1,7 @@
 const addButton = document.querySelector(".createProjectButton");
 const bar = document.querySelector(".createProject");
 const holder = document.querySelector(".projectHolder");
-let counter = 0;
+
 const loads = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const unloads = [];
 
@@ -9,7 +9,6 @@ const unloads = [];
 function loadProjects(name) {
   const information = localStorage.getItem(name);
   if (information) {
-    counter++;
     const incoming = JSON.parse(information);
     const space = document.createElement("div");
     const button = document.createElement("button");
@@ -36,7 +35,7 @@ function loadProjects(name) {
 
     renameButton.className = "renameButton";
     renameButton.textContent = "✐";
-    renameButton.title = `Rename ${incoming[1]}?`;
+    renameButton.title = `Rename ${button.textContent}?`;
     renameButton.addEventListener("click", () => {
       const response = prompt("Please enter a new name for your project.");
       if (response != null && response.length !== 0) {
@@ -44,7 +43,7 @@ function loadProjects(name) {
         projectLink.href = `${incoming[1]}/${button.textContent}`;
         const store = [
           button.textContent,
-          counter,
+          incoming[1],
         ];
         localStorage.setItem(`project ${incoming[1]}`, JSON.stringify(store));
       }
@@ -52,7 +51,7 @@ function loadProjects(name) {
 
     // Create the anchor element for the button
     const projectLink = document.createElement("a");
-    projectLink.href = incoming[2];
+    projectLink.href = `${incoming[1]}/${button.textContent}`;
     projectLink.appendChild(button);
 
     space.append(projectLink);
@@ -68,8 +67,7 @@ function loadProjects(name) {
 }
 
 
-for (let item of loads) {
-  loadProjects(`project ${item}`);
+for (item of loads) {
   if (!loadProjects(`project ${item}`)) {
     unloads.push(item);
   }
@@ -80,8 +78,8 @@ addButton.addEventListener("click", () => {
   if (bar.value === "") {
     // handle case where bar value is empty
   } else {
-    if (counter !== 10) {
-      counter++;
+    if (unloads.length !== 0) {
+      const counter = unloads.shift();
       const space = document.createElement("div");
       const button = document.createElement("button");
       const deleteButton = document.createElement("button");
@@ -89,7 +87,8 @@ addButton.addEventListener("click", () => {
 
       button.className = "project";
       button.textContent = bar.value;
-
+      
+      // delete button
       deleteButton.className = "deleteButton";
       deleteButton.title = `Delete ${button.textContent}?`;
       deleteButton.textContent = "X";
@@ -105,6 +104,7 @@ addButton.addEventListener("click", () => {
         }
       });
 
+      // rename button
       renameButton.className = "renameButton";
       renameButton.textContent = "✐";
       renameButton.title = `Rename ${button.textContent}?`;
